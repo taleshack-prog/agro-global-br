@@ -1,0 +1,245 @@
+import { useState } from 'react';
+import { Shield, TrendingDown, BarChart3, Lightbulb, AlertOctagon } from 'lucide-react';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  RadarChart, PolarGrid, PolarAngleAxis, Radar, Cell
+} from 'recharts';
+import { Card, CardHeader } from '../ui/Card';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { ProgressBar } from '../ui/ProgressBar';
+import { hedgeRecomendacao, cenariosMargem, varCenarios } from '../../data/mockData';
+
+const margemColors = ['#ef4444', '#16a34a', '#22c55e'];
+
+const CustomTooltipMargem = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-3 shadow-xl">
+        <p className="text-xs text-[#94a3b8] mb-2 font-semibold">{label}</p>
+        {payload.map((p: any) => (
+          <p key={p.name} className="text-xs" style={{ color: p.fill }}>
+            {p.name}: {p.value < 0 ? '-' : ''}R$ {Math.abs(p.value).toLocaleString('pt-BR')}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
+export const GestaoRisco = () => {
+  const [percentualFixar, setPercentualFixar] = useState(30);
+
+  const totalSafra = hedgeRecomendacao.safraTotal;
+  const sacasProtegidas = Math.round(totalSafra * (percentualFixar / 100));
+  const receita = sacasProtegidas * hedgeRecomendacao.precoAtual;
+
+  const radarData = [
+    { fator: 'Câmbio', risco: 72 },
+    { fator: 'Clima', risco: 55 },
+    { fator: 'Preço', risco: 60 },
+    { fator: 'Crédito', risco: 30 },
+    { fator: 'Logística', risco: 45 },
+    { fator: 'Regulação', risco: 20 },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-bold text-[#f1f5f9]">Inteligência e Gestão de Risco</h2>
+          <p className="text-sm text-[#64748b] mt-0.5">Recomendador de Hedge · Safra 2026/27</p>
+        </div>
+        <Badge variant="yellow" size="md">Safra 2026/27</Badge>
+      </div>
+
+      {/* Recomendação de IA */}
+      <div className="bg-gradient-to-r from-green-900/40 to-emerald-900/20 border border-green-700/50 rounded-xl p-5">
+        <div className="flex items-start gap-3">
+          <div className="p-2 bg-green-600/30 rounded-lg text-green-400 mt-0.5">
+            <Lightbulb size={20} />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-sm font-bold text-green-300">Recomendação de IA — Hedge Sugerido</h3>
+              <Badge variant="green">Atualizado agora</Badge>
+            </div>
+            <p className="text-sm text-[#e2e8f0] mb-4">
+              Com base nos dados de mercado e no perfil da sua operação, recomendamos <strong className="text-green-300">fixar 30% da safra</strong> de Soja agora usando <strong className="text-green-300">Contratos Futuros na B3</strong>, aproveitando a janela favorável de preços.
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-300">30%</div>
+                <div className="text-xs text-[#94a3b8]">Fixar agora</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-yellow-300">40%</div>
+                <div className="text-xs text-[#94a3b8]">Aguardar janela</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-slate-300">30%</div>
+                <div className="text-xs text-[#94a3b8]">Sem fixação</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Simulador Interativo */}
+        <Card>
+          <CardHeader
+            title="Simulador de Proteção"
+            subtitle="Arraste para simular cenários"
+            icon={<Shield size={16} />}
+          />
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-sm text-[#94a3b8]">% da safra a fixar</span>
+                <span className="text-xl font-bold text-green-400">{percentualFixar}%</span>
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                step={5}
+                value={percentualFixar}
+                onChange={e => setPercentualFixar(Number(e.target.value))}
+                className="w-full accent-green-500 cursor-pointer"
+              />
+              <div className="flex justify-between text-xs text-[#64748b] mt-1">
+                <span>0%</span>
+                <span className="text-green-500">Sugerido: 30%</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-[#0f172a] rounded-lg p-3">
+                <div className="text-xs text-[#64748b] mb-1">Sacas protegidas</div>
+                <div className="text-lg font-bold text-[#f1f5f9]">{sacasProtegidas.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-[#94a3b8]">de {totalSafra.toLocaleString('pt-BR')} sc</div>
+              </div>
+              <div className="bg-[#0f172a] rounded-lg p-3">
+                <div className="text-xs text-[#64748b] mb-1">Receita garantida</div>
+                <div className="text-lg font-bold text-green-400">R$ {receita.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-[#94a3b8]">@ R$ {hedgeRecomendacao.precoAtual}/sc</div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="text-xs text-[#64748b] font-semibold uppercase tracking-wide">Cobertura por instrumento</div>
+              {hedgeRecomendacao.instrumentos.map((inst, i) => (
+                <div key={i}>
+                  <ProgressBar
+                    value={inst.porcentagem}
+                    max={100}
+                    label={inst.nome}
+                    sublabel={inst.vantagem}
+                    color={['green', 'blue', 'yellow'][i] as any}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-2 pt-2">
+              <Button variant="primary" size="sm" className="flex-1">
+                <Shield size={13} />
+                Aplicar Hedge
+              </Button>
+              <Button variant="secondary" size="sm">
+                Ver Detalhes
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        {/* Radar de Risco */}
+        <Card>
+          <CardHeader
+            title="Mapa de Risco"
+            subtitle="Exposição por fator de risco"
+            icon={<AlertOctagon size={16} />}
+          />
+          <ResponsiveContainer width="100%" height={260}>
+            <RadarChart data={radarData}>
+              <PolarGrid stroke="#334155" />
+              <PolarAngleAxis dataKey="fator" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+              <Radar name="Risco" dataKey="risco" stroke="#ef4444" fill="#ef4444" fillOpacity={0.25} strokeWidth={2} />
+            </RadarChart>
+          </ResponsiveContainer>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {radarData.map((r) => (
+              <div key={r.fator} className="text-center">
+                <div className={`text-sm font-bold ${r.risco > 65 ? 'text-red-400' : r.risco > 45 ? 'text-yellow-400' : 'text-green-400'}`}>
+                  {r.risco}
+                </div>
+                <div className="text-xs text-[#64748b]">{r.fator}</div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      {/* Cenários de Margem */}
+      <Card>
+        <CardHeader
+          title="Cenários de Rentabilidade"
+          subtitle="Análise de margem por cenário"
+          icon={<BarChart3 size={16} />}
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={cenariosMargem} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                <XAxis dataKey="cenario" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={v => `R$${(v / 1000).toFixed(0)}k`} />
+                <Tooltip content={<CustomTooltipMargem />} />
+                <Bar dataKey="margem" name="Margem" radius={[4, 4, 0, 0]}>
+                  {cenariosMargem.map((_, i) => (
+                    <Cell key={i} fill={margemColors[i]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="space-y-3">
+            {cenariosMargem.map((c, i) => (
+              <div key={c.cenario} className="bg-[#0f172a] rounded-lg p-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs font-semibold" style={{ color: margemColors[i] }}>{c.cenario}</span>
+                  <Badge variant={i === 0 ? 'red' : i === 1 ? 'blue' : 'green'}>{c.roi.toFixed(1)}% ROI</Badge>
+                </div>
+                <div className="text-base font-bold text-[#f1f5f9]">R$ {c.margem.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-[#64748b]">Margem bruta estimada</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Card>
+
+      {/* Cenários de Estresse */}
+      <Card>
+        <CardHeader
+          title="Cenários de Estresse (VaR Simplificado)"
+          subtitle="Impacto na receita esperada por fator"
+          icon={<TrendingDown size={16} />}
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {varCenarios.map((v, i) => (
+            <div key={i} className="bg-[#0f172a] border border-red-900/30 rounded-lg p-4">
+              <div className="text-xs text-[#64748b] mb-2">{v.fator}</div>
+              <div className="text-xl font-bold text-red-400">
+                - R$ {Math.abs(v.impacto).toLocaleString('pt-BR')}
+              </div>
+              <div className="text-xs text-[#94a3b8] mt-1">{v.percentual}% na receita</div>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </div>
+  );
+};
