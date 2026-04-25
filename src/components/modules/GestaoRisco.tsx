@@ -15,8 +15,8 @@ const margemColors = ['#ef4444', '#16a34a', '#22c55e'];
 const CustomTooltipMargem = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-3 shadow-xl">
-        <p className="text-xs text-[#94a3b8] mb-2 font-semibold">{label}</p>
+      <div className="bg-surface-2 border border-border rounded-[12px] p-3 shadow-xl">
+        <p className="text-xs text-text-secondary mb-2 font-semibold">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-xs" style={{ color: p.fill }}>
             {p.name}: {p.value < 0 ? '-' : ''}R$ {Math.abs(p.value).toLocaleString('pt-BR')}
@@ -48,8 +48,8 @@ export const GestaoRisco = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-[#f1f5f9]">Inteligência e Gestão de Risco</h2>
-          <p className="text-sm text-[#64748b] mt-0.5">Recomendador de Hedge · Safra 2026/27</p>
+          <h2 className="text-xl font-bold text-text-primary">Inteligência e Gestão de Risco</h2>
+          <p className="text-sm text-text-muted mt-0.5">Recomendador de Hedge · Safra 2026/27</p>
         </div>
         <Badge variant="yellow" size="md">Safra 2026/27</Badge>
       </div>
@@ -57,7 +57,7 @@ export const GestaoRisco = () => {
       {/* Recomendação de IA */}
       <div className="bg-gradient-to-r from-[#064E3B]/40 to-[#064E3B]/20 border border-[#047857]/50 rounded-[12px] p-5">
         <div className="flex items-start gap-3">
-          <div className="p-2 bg-[#059669]/30 rounded-[12px] text-[#10B981] mt-0.5">
+          <div className="p-2 bg-[#059669]/30 rounded-[12px] text-agro-primary mt-0.5">
             <Lightbulb size={20} />
           </div>
           <div className="flex-1">
@@ -71,15 +71,15 @@ export const GestaoRisco = () => {
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#6EE7B7]">30%</div>
-                <div className="text-xs text-[#94a3b8]">Fixar agora</div>
+                <div className="text-xs text-text-secondary">Fixar agora</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#FCD34D]">40%</div>
-                <div className="text-xs text-[#94a3b8]">Aguardar janela</div>
+                <div className="text-xs text-text-secondary">Aguardar janela</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-slate-300">30%</div>
-                <div className="text-xs text-[#94a3b8]">Sem fixação</div>
+                <div className="text-xs text-text-secondary">Sem fixação</div>
               </div>
             </div>
           </div>
@@ -97,8 +97,8 @@ export const GestaoRisco = () => {
           <div className="space-y-5">
             <div>
               <div className="flex justify-between items-center mb-3">
-                <span className="text-sm text-[#94a3b8]">% da safra a fixar</span>
-                <span className="text-xl font-bold text-[#10B981]">{percentualFixar}%</span>
+                <span className="text-sm text-text-secondary">% da safra a fixar</span>
+                <span className="text-xl font-bold text-agro-primary">{percentualFixar}%</span>
               </div>
               <input
                 type="range"
@@ -109,7 +109,7 @@ export const GestaoRisco = () => {
                 onChange={e => setPercentualFixar(Number(e.target.value))}
                 className="w-full accent-green-500 cursor-pointer"
               />
-              <div className="flex justify-between text-xs text-[#64748b] mt-1">
+              <div className="flex justify-between text-xs text-text-muted mt-1">
                 <span>0%</span>
                 <span className="text-[#059669]">Sugerido: 30%</span>
                 <span>100%</span>
@@ -117,20 +117,20 @@ export const GestaoRisco = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-[#0f172a] rounded-[12px] p-3">
-                <div className="text-xs text-[#64748b] mb-1">Sacas protegidas</div>
-                <div className="text-lg font-bold text-[#f1f5f9]">{sacasProtegidas.toLocaleString('pt-BR')}</div>
-                <div className="text-xs text-[#94a3b8]">de {totalSafra.toLocaleString('pt-BR')} sc</div>
+              <div className="bg-surface rounded-[12px] p-3">
+                <div className="text-xs text-text-muted mb-1">Sacas protegidas</div>
+                <div className="text-lg font-bold text-text-primary">{sacasProtegidas.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-text-secondary">de {totalSafra.toLocaleString('pt-BR')} sc</div>
               </div>
-              <div className="bg-[#0f172a] rounded-[12px] p-3">
-                <div className="text-xs text-[#64748b] mb-1">Receita garantida</div>
-                <div className="text-lg font-bold text-[#10B981]">R$ {receita.toLocaleString('pt-BR')}</div>
-                <div className="text-xs text-[#94a3b8]">@ R$ {hedgeRecomendacao.precoAtual}/sc</div>
+              <div className="bg-surface rounded-[12px] p-3">
+                <div className="text-xs text-text-muted mb-1">Receita garantida</div>
+                <div className="text-lg font-bold text-agro-primary">R$ {receita.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-text-secondary">@ R$ {hedgeRecomendacao.precoAtual}/sc</div>
               </div>
             </div>
 
             <div className="space-y-3">
-              <div className="text-xs text-[#64748b] font-semibold uppercase tracking-wide">Cobertura por instrumento</div>
+              <div className="text-xs text-text-muted font-semibold uppercase tracking-wide">Cobertura por instrumento</div>
               {hedgeRecomendacao.instrumentos.map((inst, i) => (
                 <div key={i}>
                   <ProgressBar
@@ -173,10 +173,10 @@ export const GestaoRisco = () => {
           <div className="mt-2 grid grid-cols-3 gap-2">
             {radarData.map((r) => (
               <div key={r.fator} className="text-center">
-                <div className={`text-sm font-bold ${r.risco > 65 ? 'text-[#EF4444]' : r.risco > 45 ? 'text-[#F59E0B]' : 'text-[#10B981]'}`}>
+                <div className={`text-sm font-bold ${r.risco > 65 ? 'text-agro-danger' : r.risco > 45 ? 'text-agro-secondary' : 'text-agro-primary'}`}>
                   {r.risco}
                 </div>
-                <div className="text-xs text-[#64748b]">{r.fator}</div>
+                <div className="text-xs text-text-muted">{r.fator}</div>
               </div>
             ))}
           </div>
@@ -208,13 +208,13 @@ export const GestaoRisco = () => {
           </div>
           <div className="space-y-3">
             {cenariosMargem.map((c, i) => (
-              <div key={c.cenario} className="bg-[#0f172a] rounded-[12px] p-3">
+              <div key={c.cenario} className="bg-surface rounded-[12px] p-3">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-xs font-semibold" style={{ color: margemColors[i] }}>{c.cenario}</span>
                   <Badge variant={i === 0 ? 'red' : i === 1 ? 'blue' : 'green'}>{c.roi.toFixed(1)}% ROI</Badge>
                 </div>
-                <div className="text-base font-bold text-[#f1f5f9]">R$ {c.margem.toLocaleString('pt-BR')}</div>
-                <div className="text-xs text-[#64748b]">Margem bruta estimada</div>
+                <div className="text-base font-bold text-text-primary">R$ {c.margem.toLocaleString('pt-BR')}</div>
+                <div className="text-xs text-text-muted">Margem bruta estimada</div>
               </div>
             ))}
           </div>
@@ -230,12 +230,12 @@ export const GestaoRisco = () => {
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {varCenarios.map((v, i) => (
-            <div key={i} className="bg-[#0f172a] border border-[#7F1D1D]/30 rounded-[12px] p-4">
-              <div className="text-xs text-[#64748b] mb-2">{v.fator}</div>
-              <div className="text-xl font-bold text-[#EF4444]">
+            <div key={i} className="bg-surface border border-[#7F1D1D]/30 rounded-[12px] p-4">
+              <div className="text-xs text-text-muted mb-2">{v.fator}</div>
+              <div className="text-xl font-bold text-agro-danger">
                 - R$ {Math.abs(v.impacto).toLocaleString('pt-BR')}
               </div>
-              <div className="text-xs text-[#94a3b8] mt-1">{v.percentual}% na receita</div>
+              <div className="text-xs text-text-secondary mt-1">{v.percentual}% na receita</div>
             </div>
           ))}
         </div>

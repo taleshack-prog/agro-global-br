@@ -4,22 +4,21 @@ interface ProgressBarProps {
   label?: string;
   sublabel?: string;
   color?: 'primary' | 'secondary' | 'accent' | 'danger' | 'warning' | 'info'
-        | 'green' | 'blue' | 'yellow' | 'red' | 'purple'; // legacy kept
+        | 'green' | 'blue' | 'yellow' | 'red' | 'purple';
   showPercent?: boolean;
 }
 
 const colors: Record<string, string> = {
-  primary:   'bg-[#10B981]',
-  secondary: 'bg-[#F59E0B]',
-  accent:    'bg-[#3B82F6]',
-  danger:    'bg-[#EF4444]',
-  warning:   'bg-[#F59E0B]',
-  info:      'bg-[#3B82F6]',
-  // legacy aliases
-  green:     'bg-[#10B981]',
-  blue:      'bg-[#3B82F6]',
-  yellow:    'bg-[#F59E0B]',
-  red:       'bg-[#EF4444]',
+  primary:   'bg-agro-primary',
+  secondary: 'bg-agro-secondary',
+  accent:    'bg-agro-accent',
+  danger:    'bg-agro-danger',
+  warning:   'bg-agro-warning',
+  info:      'bg-agro-info',
+  green:     'bg-agro-primary',
+  blue:      'bg-agro-accent',
+  yellow:    'bg-agro-secondary',
+  red:       'bg-agro-danger',
   purple:    'bg-purple-500',
 };
 
@@ -29,16 +28,16 @@ export const ProgressBar = ({ value, max = 100, label, sublabel, color = 'primar
     <div>
       {(label || showPercent) && (
         <div className="flex justify-between items-center mb-1.5">
-          {label && <span className="text-xs text-[#94a3b8]">{label}</span>}
+          {label && <span className="text-xs text-text-secondary">{label}</span>}
           <div className="flex items-center gap-2 ml-auto">
-            {sublabel && <span className="text-xs text-[#64748b]">{sublabel}</span>}
-            {showPercent && <span className="text-xs font-semibold text-[#f1f5f9]">{percent.toFixed(0)}%</span>}
+            {sublabel && <span className="text-xs text-text-muted">{sublabel}</span>}
+            {showPercent && <span className="text-xs font-semibold text-text-primary">{percent.toFixed(0)}%</span>}
           </div>
         </div>
       )}
-      <div className="h-2 bg-[#0f172a] rounded-full overflow-hidden">
+      <div className="h-2 bg-surface rounded-[9999px] overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${colors[color] ?? colors.primary}`}
+          className={`h-full rounded-[9999px] transition-all duration-500 ${colors[color] ?? colors.primary}`}
           style={{ width: `${percent}%` }}
         />
       </div>

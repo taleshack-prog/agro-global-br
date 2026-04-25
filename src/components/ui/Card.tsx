@@ -8,7 +8,7 @@ interface CardProps {
 
 export const Card = ({ children, className = '', padding = true }: CardProps) => (
   <div
-    className={`bg-[#1e293b] border border-[#334155] rounded-[12px] ${className}`}
+    className={`bg-surface-2 border border-border rounded-[12px] ${className}`}
     style={{ boxShadow: 'var(--shadow-md)', ...(padding ? { padding: 'var(--spacing-lg)' } : {}) }}
   >
     {children}
@@ -30,16 +30,16 @@ export const CardHeader = ({ title, subtitle, action, icon }: CardHeaderProps) =
     <div className="flex items-center" style={{ gap: 'var(--spacing-md)' }}>
       {icon && (
         <div
-          className="rounded-[8px] bg-[#0f172a] text-[#10B981]"
+          className="rounded-[8px] bg-surface text-agro-primary"
           style={{ padding: 'var(--spacing-sm)' }}
         >
           {icon}
         </div>
       )}
       <div>
-        <h3 className="text-sm font-semibold text-[#f1f5f9] leading-tight">{title}</h3>
+        <h3 className="text-sm font-semibold text-text-primary leading-tight">{title}</h3>
         {subtitle && (
-          <p className="text-xs text-[#64748b]" style={{ marginTop: 'var(--spacing-xs)' }}>
+          <p className="text-xs text-text-muted" style={{ marginTop: 'var(--spacing-xs)' }}>
             {subtitle}
           </p>
         )}
