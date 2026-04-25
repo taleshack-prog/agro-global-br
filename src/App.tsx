@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
-  Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers
+  Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers, Package
 } from 'lucide-react';
 import { DashboardMercado } from './components/modules/DashboardMercado';
 import { GestaoRisco } from './components/modules/GestaoRisco';
@@ -13,6 +13,7 @@ import { Sidebar, type SidebarItem } from './components/ui/Sidebar';
 import { Breadcrumb } from './components/ui/Breadcrumb';
 import { useToast } from './components/ui/Toast';
 import { ComponentsShowcase } from './components/modules/ComponentsShowcase';
+import { CommodityExplorer } from './components/modules/CommodityExplorer';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -70,6 +71,14 @@ const NAV_ITEMS: SidebarItem[] = [
     bgActive: 'bg-agro-primary/10 border-agro-primary/40',
   },
   {
+    id: 'commodities',
+    label: 'Commodities',
+    sublabel: 'Explorer · 30 produtos',
+    icon: <Package size={18} />,
+    color: 'text-agro-secondary',
+    bgActive: 'bg-agro-secondary/10 border-agro-secondary/40',
+  },
+  {
     id: 'componentes',
     label: 'Design System',
     sublabel: 'Componentes UI',
@@ -86,6 +95,7 @@ const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
   financeiro: <FinanceiroCredito />,
   logistica:  <LogisticaInteligente />,
   esg:        <ESGRastreabilidade />,
+  commodities: <CommodityExplorer />,
   componentes: <ComponentsShowcase />,
 };
 
