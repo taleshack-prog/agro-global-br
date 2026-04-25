@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import {
   LineChart, Line, AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
@@ -27,37 +27,41 @@ const CustomTooltip = ({ active, payload, currency }: any) => {
   );
 };
 
-export const PriceChart = ({ data, height = 240, showArea = false, compact = false }: PriceChartProps) => {
+export const PriceChart = memo(({ data, height = 240, showArea = false, compact = false }: PriceChartProps) => {
   const isPositive = data.change_pct >= 0;
   const color = isPositive ? '#10B981' : '#EF4444';
 
   const chartData = useMemo(() =>
-    data.history.map((p, i) => ({
+    data.history.map((p) => ({
       time: new Date(p.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
       price: p.price,
-      index: i,
     })),
-    [data.history]
+    // Only recompute when history length changes or last price changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data.history.length, data.price]
   );
 
-  const domainMin = Math.min(...data.history.map(h => h.price)) * 0.999;
-  const domainMax = Math.max(...data.history.map(h => h.price)) * 1.001;
+  const [domainMin, domainMax] = useMemo(() => {
+    if (data.history.length < 2) return [data.price * 0.999, data.price * 1.001];
+    const prices = data.history.map(h => h.price);
+    return [Math.min(...prices) * 0.999, Math.max(...prices) * 1.001];
+  }, [data.history.length, data.price]);
 
   return (
     <Card className="space-y-3">
-      {/* Header */}
+      {/* Header — only price number changes, not full re-render */}
       <div className="flex items-start justify-between">
         <div>
           <h3 className={`font-bold text-text-primary ${compact ? 'text-sm' : 'text-base'}`}>{data.name}</h3>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className={`font-bold text-text-primary ${compact ? 'text-xl' : 'text-2xl'}`}>
-              {data.price.toFixed(data.currency === 'USD' && data.price < 100 ? 4 : 2)}
+            <span className={`font-bold text-text-primary tabular-nums ${compact ? 'text-xl' : 'text-2xl'}`}>
+              {data.price.toFixed(data.price < 100 ? 4 : 2)}
             </span>
             <span className="text-xs text-text-muted">{data.currency} / {data.unit}</span>
           </div>
         </div>
         <div className="text-right">
-          <div className={`flex items-center gap-1 font-bold ${isPositive ? 'text-agro-primary' : 'text-agro-danger'}`}>
+          <div className={`flex items-center gap-1 font-bold tabular-nums ${isPositive ? 'text-agro-primary' : 'text-agro-danger'}`}>
             {isPositive ? <TrendingUp size={15} /> : <TrendingDown size={15} />}
             <span className={compact ? 'text-sm' : 'text-base'}>
               {isPositive ? '+' : ''}{data.change_pct.toFixed(3)}%
@@ -65,7 +69,7 @@ export const PriceChart = ({ data, height = 240, showArea = false, compact = fal
           </div>
           {!compact && (
             <p className="text-xs text-text-muted mt-0.5">
-              Anterior: {data.prev_price?.toFixed(2)}
+              Ant.: {data.prev_price?.toFixed(2)}
             </p>
           )}
         </div>
@@ -82,7 +86,7 @@ export const PriceChart = ({ data, height = 240, showArea = false, compact = fal
         </span>
       </div>
 
-      {/* Chart */}
+      {/* Chart — isAnimationActive=false prevents redraw flicker */}
       {chartData.length > 1 ? (
         <ResponsiveContainer width="100%" height={height}>
           {showArea ? (
@@ -116,4 +120,13 @@ export const PriceChart = ({ data, height = 240, showArea = false, compact = fal
       )}
     </Card>
   );
-};
+}, (prev, next) =>
+  // Only re-render when price changes or chart type/size changes
+  prev.data.price === next.data.price &&
+  prev.data.history.length === next.data.history.length &&
+  prev.showArea === next.showArea &&
+  prev.height === next.height &&
+  prev.compact === next.compact
+);
+
+PriceChart.displayName = 'PriceChart';
