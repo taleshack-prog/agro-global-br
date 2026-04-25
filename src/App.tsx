@@ -16,6 +16,7 @@ import { ComponentsShowcase } from './components/modules/ComponentsShowcase';
 import { CommoditiesRouter } from './pages/commodities/CommoditiesRouter';
 import { PricesDashboard } from './pages/PricesDashboard';
 import { HedgeDashboard } from './pages/HedgeDashboard';
+import { DashboardExecutivo } from './pages/DashboardExecutivo';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -73,6 +74,14 @@ const NAV_ITEMS: SidebarItem[] = [
     bgActive: 'bg-agro-primary/10 border-agro-primary/40',
   },
   {
+    id: 'dashboard-exec',
+    label: 'Dashboard Exec.',
+    sublabel: 'Kafka · 6 Widgets · Live',
+    icon: <LayoutDashboard size={18} />,
+    color: 'text-agro-accent',
+    bgActive: 'bg-agro-accent/10 border-agro-accent/40',
+  },
+  {
     id: 'hedge-sistema',
     label: 'Sistema de Hedge',
     sublabel: 'Recomendações · Alertas · BT',
@@ -112,6 +121,7 @@ const NAV_ITEMS: SidebarItem[] = [
 
 function renderModule(id: string, onNavigate: (m: string) => void): React.ReactNode {
   switch (id) {
+    case 'dashboard-exec': return <DashboardExecutivo />;
     case 'dashboard':     return <DashboardMercado />;
     case 'risco':         return <GestaoRisco />;
     case 'negociacao':    return <MesaNegociacao />;
