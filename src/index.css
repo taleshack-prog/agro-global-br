@@ -30,6 +30,16 @@
   --color-text-secondary: #94a3b8;
   --color-text-muted:     #64748b;
 
+  /* ── Spacing scale ───────────────────────────────────────────── */
+  --spacing-xs:  4px;   /* Micro — ícone interno, gap mínimo     */
+  --spacing-sm:  8px;   /* Pequeno — padding interno leve        */
+  --spacing-md:  12px;  /* Médio — gap padrão entre elementos    */
+  --spacing-lg:  16px;  /* Grande — padding de card, seção       */
+  --spacing-xl:  24px;  /* Extra grande — espaço entre blocos    */
+  --spacing-2xl: 32px;  /* 2x — seções e margens maiores         */
+  --spacing-3xl: 48px;  /* 3x — blocos de layout                 */
+  --spacing-4xl: 64px;  /* 4x — hero e seções de destaque        */
+
   /* ── Border radius ───────────────────────────────────────────── */
   --radius-xs:   4px;     /* Muito pequeno — badges, tags inline    */
   --radius-sm:   8px;     /* Pequeno — inputs, buttons              */
@@ -80,6 +90,42 @@ code, kbd, pre, samp, .font-mono {
 ::-webkit-scrollbar-track { background: var(--color-surface-2); }
 ::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ── Spacing utilities ───────────────────────────────────────────── */
+/* These complement Tailwind's built-in scale with the named tokens   */
+.p-xs  { padding: var(--spacing-xs);  }
+.p-sm  { padding: var(--spacing-sm);  }
+.p-md  { padding: var(--spacing-md);  }
+.p-lg  { padding: var(--spacing-lg);  }
+.p-xl  { padding: var(--spacing-xl);  }
+.p-2xl { padding: var(--spacing-2xl); }
+.p-3xl { padding: var(--spacing-3xl); }
+.p-4xl { padding: var(--spacing-4xl); }
+
+.gap-xs  { gap: var(--spacing-xs);  }
+.gap-sm  { gap: var(--spacing-sm);  }
+.gap-md  { gap: var(--spacing-md);  }
+.gap-lg  { gap: var(--spacing-lg);  }
+.gap-xl  { gap: var(--spacing-xl);  }
+.gap-2xl { gap: var(--spacing-2xl); }
+.gap-3xl { gap: var(--spacing-3xl); }
+.gap-4xl { gap: var(--spacing-4xl); }
+
+.mt-xs  { margin-top: var(--spacing-xs);  }
+.mt-sm  { margin-top: var(--spacing-sm);  }
+.mt-md  { margin-top: var(--spacing-md);  }
+.mt-lg  { margin-top: var(--spacing-lg);  }
+.mt-xl  { margin-top: var(--spacing-xl);  }
+.mt-2xl { margin-top: var(--spacing-2xl); }
+.mt-3xl { margin-top: var(--spacing-3xl); }
+.mt-4xl { margin-top: var(--spacing-4xl); }
+
+.mb-xs  { margin-bottom: var(--spacing-xs);  }
+.mb-sm  { margin-bottom: var(--spacing-sm);  }
+.mb-md  { margin-bottom: var(--spacing-md);  }
+.mb-lg  { margin-bottom: var(--spacing-lg);  }
+.mb-xl  { margin-bottom: var(--spacing-xl);  }
+.mb-2xl { margin-bottom: var(--spacing-2xl); }
 
 /* ── Typography helpers ──────────────────────────────────────────── */
 .text-display  { font-size: var(--font-size-4xl); line-height: var(--line-height-4xl); font-weight: 800; }
