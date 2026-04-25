@@ -1,0 +1,212 @@
+{
+  "soja": {
+    "id": "soja", "name": "Soja", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "8-12%", "volatilidade_histórica": "18%" },
+    "preços": { "fontes": ["B3", "CBOT"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 60, "volume_médio_saca": 0.08, "temperatura_armazenagem": "15-20", "umidade_ideal": "12-13", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "7-9%" }
+  },
+  "milho": {
+    "id": "milho", "name": "Milho", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "6-10%", "volatilidade_histórica": "16%" },
+    "preços": { "fontes": ["B3", "CBOT"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 60, "volume_médio_saca": 0.09, "temperatura_armazenagem": "15-20", "umidade_ideal": "13-14", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "7-9%" }
+  },
+  "trigo": {
+    "id": "trigo", "name": "Trigo", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "5-8%", "volatilidade_histórica": "14%" },
+    "preços": { "fontes": ["B3", "CBOT"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 60, "volume_médio_saca": 0.08, "temperatura_armazenagem": "15-20", "umidade_ideal": "12-13", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "7-9%" }
+  },
+  "arroz": {
+    "id": "arroz", "name": "Arroz", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-7%", "volatilidade_histórica": "12%" },
+    "preços": { "fontes": ["CEPEA", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.07, "temperatura_armazenagem": "15-20", "umidade_ideal": "13-14", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "8-10%" }
+  },
+  "feijao": {
+    "id": "feijao", "name": "Feijão", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "5-9%", "volatilidade_histórica": "20%" },
+    "preços": { "fontes": ["CEPEA", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 60, "volume_médio_saca": 0.08, "temperatura_armazenagem": "15-20", "umidade_ideal": "12-13", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "8-10%" }
+  },
+  "aveia": {
+    "id": "aveia", "name": "Aveia", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "3-6%", "volatilidade_histórica": "15%" },
+    "preços": { "fontes": ["CEPEA", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 45, "volume_médio_saca": 0.09, "temperatura_armazenagem": "15-20", "umidade_ideal": "13-14", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": true, "taxa_média_financiamento": "8-10%" }
+  },
+  "sorgo": {
+    "id": "sorgo", "name": "Sorgo", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "3-5%", "volatilidade_histórica": "14%" },
+    "preços": { "fontes": ["CEPEA", "regional"], "atualização": "semanal", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.08, "temperatura_armazenagem": "15-20", "umidade_ideal": "12-13", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "cafe": {
+    "id": "cafe", "name": "Café", "category": "grãos", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "8-12%", "volatilidade_histórica": "19%" },
+    "preços": { "fontes": ["B3", "ICE"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 60, "volume_médio_saca": 0.08, "temperatura_armazenagem": "15-20", "umidade_ideal": "11-12", "prazo_validade": 730 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "6-8%" }
+  },
+  "gado": {
+    "id": "gado", "name": "Gado (Bovino)", "category": "proteína", "unit": "kg",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "média", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "10-15%", "volatilidade_histórica": "12%" },
+    "preços": { "fontes": ["B3", "CEPEA"], "atualização": "tempo_real", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 500, "volume_médio_saca": 2.5, "temperatura_armazenagem": "-18", "umidade_ideal": "N/A", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": false, "taxa_média_financiamento": "6-8%" }
+  },
+  "suino": {
+    "id": "suino", "name": "Suíno", "category": "proteína", "unit": "kg",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "baixa", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "8-12%", "volatilidade_histórica": "14%" },
+    "preços": { "fontes": ["B3", "CEPEA"], "atualização": "tempo_real", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 100, "volume_médio_saca": 0.5, "temperatura_armazenagem": "-18", "umidade_ideal": "N/A", "prazo_validade": 180 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": false, "taxa_média_financiamento": "6-8%" }
+  },
+  "aves": {
+    "id": "aves", "name": "Aves (Frango)", "category": "proteína", "unit": "kg",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "baixa", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "5-10%", "volatilidade_histórica": "10%" },
+    "preços": { "fontes": ["ABPA", "CEPEA"], "atualização": "semanal", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.25, "temperatura_armazenagem": "-18", "umidade_ideal": "N/A", "prazo_validade": 120 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "7-9%" }
+  },
+  "ovos": {
+    "id": "ovos", "name": "Ovos", "category": "proteína", "unit": "dúzia",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "baixa", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-8%", "volatilidade_histórica": "18%" },
+    "preços": { "fontes": ["ABPA", "regional"], "atualização": "semanal", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 30, "volume_médio_saca": 0.15, "temperatura_armazenagem": "15-20", "umidade_ideal": "60-80", "prazo_validade": 30 },
+    "financeiro": { "crédito_disponível": false, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "N/A" }
+  },
+  "cana": {
+    "id": "cana", "name": "Cana-de-Açúcar", "category": "açúcar", "unit": "tonelada",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "alta", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "6-10%", "volatilidade_histórica": "15%" },
+    "preços": { "fontes": ["B3", "ICE"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 1000, "volume_médio_saca": 5, "temperatura_armazenagem": "ambiente", "umidade_ideal": "N/A", "prazo_validade": 7 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "6-8%" }
+  },
+  "etanol": {
+    "id": "etanol", "name": "Etanol", "category": "energia", "unit": "litro",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "5-8%", "volatilidade_histórica": "16%" },
+    "preços": { "fontes": ["B3", "UNICA"], "atualização": "tempo_real", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 800, "volume_médio_saca": 1, "temperatura_armazenagem": "15-30", "umidade_ideal": "N/A", "prazo_validade": 180 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "6-8%" }
+  },
+  "biodiesel": {
+    "id": "biodiesel", "name": "Biodiesel", "category": "energia", "unit": "litro",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-7%", "volatilidade_histórica": "14%" },
+    "preços": { "fontes": ["B3", "ABIQUIM"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 880, "volume_médio_saca": 1, "temperatura_armazenagem": "15-30", "umidade_ideal": "N/A", "prazo_validade": 180 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "7-9%" }
+  },
+  "algodao": {
+    "id": "algodao", "name": "Algodão", "category": "fibra", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "7-11%", "volatilidade_histórica": "17%" },
+    "preços": { "fontes": ["B3", "ICE"], "atualização": "tempo_real", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 217, "volume_médio_saca": 0.5, "temperatura_armazenagem": "15-20", "umidade_ideal": "12-13", "prazo_validade": 365 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": true, "taxa_média_financiamento": "7-9%" }
+  },
+  "laranja": {
+    "id": "laranja", "name": "Laranja", "category": "frutas", "unit": "caixa",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "5-10%", "volatilidade_histórica": "22%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 40, "volume_médio_saca": 0.05, "temperatura_armazenagem": "8-12", "umidade_ideal": "85-90", "prazo_validade": 30 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "banana": {
+    "id": "banana", "name": "Banana", "category": "frutas", "unit": "cacho",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "baixa", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-8%", "volatilidade_histórica": "18%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.06, "temperatura_armazenagem": "13-16", "umidade_ideal": "85-90", "prazo_validade": 14 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "maca": {
+    "id": "maca", "name": "Maçã", "category": "frutas", "unit": "caixa",
+    "attributes": { "perecibilidade": "média", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "6-10%", "volatilidade_histórica": "16%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 20, "volume_médio_saca": 0.03, "temperatura_armazenagem": "0-4", "umidade_ideal": "90-95", "prazo_validade": 180 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "uva": {
+    "id": "uva", "name": "Uva", "category": "frutas", "unit": "caixa",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "10-15%", "volatilidade_histórica": "20%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 15, "volume_médio_saca": 0.02, "temperatura_armazenagem": "0-2", "umidade_ideal": "90-95", "prazo_validade": 10 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "melancia": {
+    "id": "melancia", "name": "Melancia", "category": "frutas", "unit": "unidade",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "3-6%", "volatilidade_histórica": "25%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 5, "volume_médio_saca": 0.01, "temperatura_armazenagem": "12-15", "umidade_ideal": "80-85", "prazo_validade": 14 },
+    "financeiro": { "crédito_disponível": false, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "N/A" }
+  },
+  "tomate": {
+    "id": "tomate", "name": "Tomate", "category": "hortaliças", "unit": "caixa",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-8%", "volatilidade_histórica": "28%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 20, "volume_médio_saca": 0.03, "temperatura_armazenagem": "12-15", "umidade_ideal": "85-90", "prazo_validade": 7 },
+    "financeiro": { "crédito_disponível": false, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "N/A" }
+  },
+  "batata": {
+    "id": "batata", "name": "Batata", "category": "hortaliças", "unit": "saca",
+    "attributes": { "perecibilidade": "média", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "5-10%", "volatilidade_histórica": "20%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.06, "temperatura_armazenagem": "8-12", "umidade_ideal": "85-90", "prazo_validade": 60 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "cebola": {
+    "id": "cebola", "name": "Cebola", "category": "hortaliças", "unit": "saca",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-8%", "volatilidade_histórica": "22%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.06, "temperatura_armazenagem": "8-12", "umidade_ideal": "70-75", "prazo_validade": 120 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "alface": {
+    "id": "alface", "name": "Alface", "category": "hortaliças", "unit": "caixa",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "baixa", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "3-6%", "volatilidade_histórica": "30%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 10, "volume_médio_saca": 0.02, "temperatura_armazenagem": "5-8", "umidade_ideal": "95", "prazo_validade": 3 },
+    "financeiro": { "crédito_disponível": false, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "N/A" }
+  },
+  "cenoura": {
+    "id": "cenoura", "name": "Cenoura", "category": "hortaliças", "unit": "saca",
+    "attributes": { "perecibilidade": "média", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "4-7%", "volatilidade_histórica": "18%" },
+    "preços": { "fontes": ["CEAGESP", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.06, "temperatura_armazenagem": "0-4", "umidade_ideal": "90-95", "prazo_validade": 90 },
+    "financeiro": { "crédito_disponível": false, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "N/A" }
+  },
+  "leite": {
+    "id": "leite", "name": "Leite", "category": "lácteos", "unit": "litro",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "3-7%", "volatilidade_histórica": "14%" },
+    "preços": { "fontes": ["CEPEA", "regional"], "atualização": "diária", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 1, "volume_médio_saca": 0.001, "temperatura_armazenagem": "4", "umidade_ideal": "N/A", "prazo_validade": 7 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "7-9%" }
+  },
+  "pescado": {
+    "id": "pescado", "name": "Pescado", "category": "pescado", "unit": "kg",
+    "attributes": { "perecibilidade": "alta", "sazonalidade": "alta", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "6-12%", "volatilidade_histórica": "24%" },
+    "preços": { "fontes": ["IBAMA", "regional"], "atualização": "semanal", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 50, "volume_médio_saca": 0.08, "temperatura_armazenagem": "-18", "umidade_ideal": "N/A", "prazo_validade": 180 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": false, "cpr_fracionável": false, "taxa_média_financiamento": "8-10%" }
+  },
+  "madeira": {
+    "id": "madeira", "name": "Madeira", "category": "madeira", "unit": "m³",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "média", "hedge_disponível": false, "rastreabilidade_esg": true, "margem_típica": "8-15%", "volatilidade_histórica": "16%" },
+    "preços": { "fontes": ["BNDES", "regional"], "atualização": "semanal", "moeda": "BRL" },
+    "logística": { "peso_médio_saca": 500, "volume_médio_saca": 1, "temperatura_armazenagem": "ambiente", "umidade_ideal": "12-15", "prazo_validade": 1825 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": false, "taxa_média_financiamento": "6-8%" }
+  },
+  "celulose": {
+    "id": "celulose", "name": "Celulose", "category": "madeira", "unit": "tonelada",
+    "attributes": { "perecibilidade": "baixa", "sazonalidade": "baixa", "hedge_disponível": true, "rastreabilidade_esg": true, "margem_típica": "5-10%", "volatilidade_histórica": "13%" },
+    "preços": { "fontes": ["B3", "BNDES"], "atualização": "diária", "moeda": "USD" },
+    "logística": { "peso_médio_saca": 1000, "volume_médio_saca": 2, "temperatura_armazenagem": "ambiente", "umidade_ideal": "10-12", "prazo_validade": 1825 },
+    "financeiro": { "crédito_disponível": true, "seguro_disponível": true, "cpr_fracionável": false, "taxa_média_financiamento": "6-8%" }
+  }
+}
