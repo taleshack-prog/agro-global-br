@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
-  Truck, Leaf, Bell, Settings, Menu, TrendingUp, User
+  Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers
 } from 'lucide-react';
 import { DashboardMercado } from './components/modules/DashboardMercado';
 import { GestaoRisco } from './components/modules/GestaoRisco';
@@ -12,6 +12,7 @@ import { ESGRastreabilidade } from './components/modules/ESGRastreabilidade';
 import { Sidebar, type SidebarItem } from './components/ui/Sidebar';
 import { Breadcrumb } from './components/ui/Breadcrumb';
 import { useToast } from './components/ui/Toast';
+import { ComponentsShowcase } from './components/modules/ComponentsShowcase';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -68,6 +69,14 @@ const NAV_ITEMS: SidebarItem[] = [
     color: 'text-agro-primary',
     bgActive: 'bg-agro-primary/10 border-agro-primary/40',
   },
+  {
+    id: 'componentes',
+    label: 'Design System',
+    sublabel: 'Componentes UI',
+    icon: <Layers size={18} />,
+    color: 'text-purple-400',
+    bgActive: 'bg-purple-900/30 border-purple-700/50',
+  },
 ];
 
 const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
@@ -77,6 +86,7 @@ const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
   financeiro: <FinanceiroCredito />,
   logistica:  <LogisticaInteligente />,
   esg:        <ESGRastreabilidade />,
+  componentes: <ComponentsShowcase />,
 };
 
 // ─── App ─────────────────────────────────────────────────────────────────────
