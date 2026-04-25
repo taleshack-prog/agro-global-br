@@ -1,12 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import { TrendingUp, ArrowRight } from 'lucide-react';
 import { Card, CardHeader } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Alert } from '../../components/ui/Alert';
 import { getCommoditiesWithHedge } from '../../lib/utils/commodityUtils';
 
-export const CommodityHedge = () => {
-  const navigate = useNavigate();
+interface Props {
+  onNavigate: (view: string, param?: string) => void;
+}
+
+export const CommodityHedge = ({ onNavigate }: Props) => {
   const commodities = getCommoditiesWithHedge();
 
   const bySource = commodities.reduce<Record<string, typeof commodities>>((acc, c) => {
@@ -31,23 +33,17 @@ export const CommodityHedge = () => {
 
       <Alert variant="info" title="O que é Hedge?">
         Proteção contra variação de preço através de contratos futuros nas bolsas B3, CBOT ou ICE.
-        Permite fixar o preço de venda antes da colheita, eliminando o risco de queda.
+        Permite fixar o preço de venda antes da colheita.
       </Alert>
 
-      {/* Por bolsa */}
       {Object.entries(bySource).filter(([src]) => ['B3', 'CBOT', 'ICE'].includes(src)).map(([source, list]) => (
         <Card key={source}>
-          <CardHeader
-            title={`Disponível na ${source}`}
-            subtitle={`${list.length} commodities`}
-            icon={<TrendingUp size={16} />}
-            action={<Badge variant="primary">{source}</Badge>}
-          />
+          <CardHeader title={`Disponível na ${source}`} subtitle={`${list.length} commodities`} icon={<TrendingUp size={16} />} action={<Badge variant="primary">{source}</Badge>} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {list.map(c => (
               <button
                 key={c.id}
-                onClick={() => navigate(`/commodities/${c.id}`)}
+                onClick={() => onNavigate('detail', c.id)}
                 className="text-left p-4 bg-surface rounded-[12px] border border-border hover:border-agro-primary transition-colors group"
               >
                 <div className="flex items-center justify-between mb-2">
@@ -56,9 +52,7 @@ export const CommodityHedge = () => {
                 </div>
                 <div className="flex gap-1.5 flex-wrap">
                   <Badge variant="gray" size="sm">{c.preços.moeda}</Badge>
-                  <Badge variant={c.preços.atualização === 'tempo_real' ? 'primary' : 'accent'} size="sm">
-                    {c.preços.atualização}
-                  </Badge>
+                  <Badge variant={c.preços.atualização === 'tempo_real' ? 'primary' : 'accent'} size="sm">{c.preços.atualização}</Badge>
                   <Badge variant="gray" size="sm">Vol. {c.attributes.volatilidade_histórica}</Badge>
                 </div>
               </button>

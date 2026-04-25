@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
   Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers, Package
@@ -14,12 +13,7 @@ import { Sidebar, type SidebarItem } from './components/ui/Sidebar';
 import { Breadcrumb } from './components/ui/Breadcrumb';
 import { useToast } from './components/ui/Toast';
 import { ComponentsShowcase } from './components/modules/ComponentsShowcase';
-import { CommodityExplorer } from './components/modules/CommodityExplorer';
-import { CommoditiesOverview } from './pages/commodities/CommoditiesOverview';
-import { AllCommodities } from './pages/commodities/AllCommodities';
-import { CommodityDetail } from './pages/commodities/CommodityDetail';
-import { CommodityCategory } from './pages/commodities/CommodityCategory';
-import { CommodityHedge } from './pages/commodities/CommodityHedge';
+import { CommoditiesRouter } from './pages/commodities/CommoditiesRouter';
 import { PricesDashboard } from './pages/PricesDashboard';
 import { HedgeDashboard } from './pages/HedgeDashboard';
 
@@ -125,7 +119,7 @@ const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
   esg:        <ESGRastreabilidade />,
   'hedge-sistema': <HedgeDashboard />,
   precos: <PricesDashboard />,
-  commodities: <CommodityExplorer />,
+  commodities: null, // rendered separately via CommoditiesRouter
   componentes: <ComponentsShowcase />,
 };
 
@@ -135,25 +129,13 @@ export default function App() {
   const [activeModule, setActiveModule] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // If we're on a commodity sub-route, highlight the commodities nav item
-  const effectiveModule = location.pathname.startsWith('/commodities')
-    ? 'commodities'
-    : activeModule;
 
   const handleModuleSelect = (id: string) => {
     setActiveModule(id);
-    if (id === 'commodities') {
-      navigate('/commodities');
-    } else if (location.pathname !== '/') {
-      // Always navigate back to root when switching away from commodity routes
-      navigate('/');
-    }
+    setSidebarOpen(false);
   };
 
-  const current = NAV_ITEMS.find(m => m.id === effectiveModule) ?? NAV_ITEMS[0];
+  const current = NAV_ITEMS.find(m => m.id === activeModule) ?? NAV_ITEMS[0];
 
   // Sidebar header slot
   const sidebarHeader = (
@@ -210,7 +192,7 @@ export default function App() {
         header={sidebarHeader}
         info={sidebarInfo}
         sections={[{ items: NAV_ITEMS }]}
-        activeId={effectiveModule}
+        activeId={activeModule}
         onSelect={handleModuleSelect}
         footer={sidebarFooter}
         open={sidebarOpen}
@@ -257,16 +239,10 @@ export default function App() {
 
         {/* Content */}
         <main className="flex-1 overflow-y-auto p-6">
-          <Routes>
-            {/* Commodity sub-routes */}
-            <Route path="/commodities" element={<CommoditiesOverview />} />
-            <Route path="/commodities/all" element={<AllCommodities />} />
-            <Route path="/commodities/hedge" element={<CommodityHedge />} />
-            <Route path="/commodities/category/:category" element={<CommodityCategory />} />
-            <Route path="/commodities/:id" element={<CommodityDetail />} />
-            {/* Default: sidebar module */}
-            <Route path="*" element={MODULE_COMPONENTS[activeModule]} />
-          </Routes>
+          {activeModule === 'commodities'
+            ? <CommoditiesRouter onExternalNavigate={handleModuleSelect} />
+            : MODULE_COMPONENTS[activeModule]
+          }
         </main>
       </div>
     </div>
