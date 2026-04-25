@@ -7,7 +7,16 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server:dev": "npm --prefix server run dev",
+    "server:build": "npm --prefix server run build",
+    "server:start": "npm --prefix server run start",
+    "db:push": "npm --prefix server run db:push",
+    "db:migrate": "npm --prefix server run db:migrate",
+    "db:studio": "npm --prefix server run db:studio",
+    "server:install": "npm --prefix server install",
+    "setup": "npm install && npm --prefix server install",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\""
   },
   "dependencies": {
     "date-fns": "^4.1.0",
@@ -24,6 +33,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.5.0",
+    "concurrently": "^9.2.1",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
