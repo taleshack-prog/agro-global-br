@@ -144,13 +144,16 @@ export default function App() {
     : activeModule;
 
   const handleModuleSelect = (id: string) => {
+    setActiveModule(id);
     if (id === 'commodities') {
       navigate('/commodities');
+    } else if (location.pathname !== '/') {
+      // Always navigate back to root when switching away from commodity routes
+      navigate('/');
     }
-    setActiveModule(id);
   };
 
-  const current = NAV_ITEMS.find(m => m.id === activeModule)!;
+  const current = NAV_ITEMS.find(m => m.id === effectiveModule) ?? NAV_ITEMS[0];
 
   // Sidebar header slot
   const sidebarHeader = (
