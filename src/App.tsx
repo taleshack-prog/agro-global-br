@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
   Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers, Package
@@ -14,6 +15,11 @@ import { Breadcrumb } from './components/ui/Breadcrumb';
 import { useToast } from './components/ui/Toast';
 import { ComponentsShowcase } from './components/modules/ComponentsShowcase';
 import { CommodityExplorer } from './components/modules/CommodityExplorer';
+import { CommoditiesOverview } from './pages/commodities/CommoditiesOverview';
+import { AllCommodities } from './pages/commodities/AllCommodities';
+import { CommodityDetail } from './pages/commodities/CommodityDetail';
+import { CommodityCategory } from './pages/commodities/CommodityCategory';
+import { CommodityHedge } from './pages/commodities/CommodityHedge';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -105,6 +111,20 @@ export default function App() {
   const [activeModule, setActiveModule] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // If we're on a commodity sub-route, highlight the commodities nav item
+  const effectiveModule = location.pathname.startsWith('/commodities')
+    ? 'commodities'
+    : activeModule;
+
+  const handleModuleSelect = (id: string) => {
+    if (id === 'commodities') {
+      navigate('/commodities');
+    }
+    setActiveModule(id);
+  };
 
   const current = NAV_ITEMS.find(m => m.id === activeModule)!;
 
@@ -163,8 +183,8 @@ export default function App() {
         header={sidebarHeader}
         info={sidebarInfo}
         sections={[{ items: NAV_ITEMS }]}
-        activeId={activeModule}
-        onSelect={setActiveModule}
+        activeId={effectiveModule}
+        onSelect={handleModuleSelect}
         footer={sidebarFooter}
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -210,7 +230,16 @@ export default function App() {
 
         {/* Content */}
         <main className="flex-1 overflow-y-auto p-6">
-          {MODULE_COMPONENTS[activeModule]}
+          <Routes>
+            {/* Commodity sub-routes */}
+            <Route path="/commodities" element={<CommoditiesOverview />} />
+            <Route path="/commodities/all" element={<AllCommodities />} />
+            <Route path="/commodities/hedge" element={<CommodityHedge />} />
+            <Route path="/commodities/category/:category" element={<CommodityCategory />} />
+            <Route path="/commodities/:id" element={<CommodityDetail />} />
+            {/* Default: sidebar module */}
+            <Route path="*" element={MODULE_COMPONENTS[activeModule]} />
+          </Routes>
         </main>
       </div>
     </div>
