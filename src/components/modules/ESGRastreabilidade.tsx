@@ -45,7 +45,7 @@ export const ESGRastreabilidade = () => {
           <h2 className="text-xl font-bold text-[#f1f5f9]">ESG e Rastreabilidade</h2>
           <p className="text-sm text-[#64748b] mt-0.5">Score Ambiental · Créditos de Carbono · Compliance</p>
         </div>
-        <Button variant="success">
+        <Button variant="primary">
           <Award size={14} />
           Gerar Relatório ESG
         </Button>
@@ -106,7 +106,7 @@ export const ESGRastreabilidade = () => {
               subtitle="Créditos verificados e pendentes"
               icon={<TreePine size={16} />}
               action={
-                <Button variant="success" size="sm">
+                <Button variant="primary" size="sm">
                   <TreePine size={13} />
                   Negociar Créditos
                 </Button>
