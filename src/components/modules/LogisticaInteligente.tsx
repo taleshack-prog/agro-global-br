@@ -3,6 +3,7 @@ import { Truck, MapPin, Calculator, Package, ChevronRight } from 'lucide-react';
 import { Card, CardHeader } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 import { rotasLogistica, netbackCalculo } from '../../data/mockData';
 
 export const LogisticaInteligente = () => {
@@ -39,32 +40,31 @@ export const LogisticaInteligente = () => {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="text-xs text-[#64748b] block mb-2 font-medium uppercase tracking-wide">Origem</label>
+            <label className="block text-sm font-semibold text-[#f1f5f9] mb-2">Origem</label>
             <select
               value={origemSelecionada}
               onChange={e => setOrigemSelecionada(e.target.value)}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669] cursor-pointer"
+              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-md text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
             >
               {origens.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-xs text-[#64748b] block mb-2 font-medium uppercase tracking-wide">Produto</label>
+            <label className="block text-sm font-semibold text-[#f1f5f9] mb-2">Produto</label>
             <select
               value={produto}
               onChange={e => setProduto(e.target.value)}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669] cursor-pointer"
+              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-md text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
             >
               {produtos.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-xs text-[#64748b] block mb-2 font-medium uppercase tracking-wide">Volume (sacas)</label>
-            <input
+            <Input
+              label="Volume (sacas)"
               type="number"
               value={volume}
               onChange={e => setVolume(Number(e.target.value))}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669]"
               min={1}
             />
           </div>
