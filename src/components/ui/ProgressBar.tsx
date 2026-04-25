@@ -3,19 +3,27 @@ interface ProgressBarProps {
   max?: number;
   label?: string;
   sublabel?: string;
-  color?: 'green' | 'blue' | 'yellow' | 'red' | 'purple';
+  color?: 'primary' | 'secondary' | 'accent' | 'danger' | 'warning' | 'info'
+        | 'green' | 'blue' | 'yellow' | 'red' | 'purple'; // legacy kept
   showPercent?: boolean;
 }
 
-const colors = {
-  green: 'bg-green-500',
-  blue: 'bg-blue-500',
-  yellow: 'bg-yellow-500',
-  red: 'bg-red-500',
-  purple: 'bg-purple-500',
+const colors: Record<string, string> = {
+  primary:   'bg-[#10B981]',
+  secondary: 'bg-[#F59E0B]',
+  accent:    'bg-[#3B82F6]',
+  danger:    'bg-[#EF4444]',
+  warning:   'bg-[#F59E0B]',
+  info:      'bg-[#3B82F6]',
+  // legacy aliases
+  green:     'bg-[#10B981]',
+  blue:      'bg-[#3B82F6]',
+  yellow:    'bg-[#F59E0B]',
+  red:       'bg-[#EF4444]',
+  purple:    'bg-purple-500',
 };
 
-export const ProgressBar = ({ value, max = 100, label, sublabel, color = 'green', showPercent = true }: ProgressBarProps) => {
+export const ProgressBar = ({ value, max = 100, label, sublabel, color = 'primary', showPercent = true }: ProgressBarProps) => {
   const percent = Math.min(100, (value / max) * 100);
   return (
     <div>
@@ -30,7 +38,7 @@ export const ProgressBar = ({ value, max = 100, label, sublabel, color = 'green'
       )}
       <div className="h-2 bg-[#0f172a] rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${colors[color]}`}
+          className={`h-full rounded-full transition-all duration-500 ${colors[color] ?? colors.primary}`}
           style={{ width: `${percent}%` }}
         />
       </div>

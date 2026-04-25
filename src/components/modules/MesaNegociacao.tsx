@@ -41,7 +41,7 @@ export const MesaNegociacao = () => {
             key={t}
             onClick={() => setTab(t)}
             className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-150 ${
-              tab === t ? 'bg-green-700 text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
+              tab === t ? 'bg-[#047857] text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
             }`}
           >
             {t === 'ofertas' ? 'Livro de Ofertas' : t === 'rfq' ? 'RFQ / Leilões' : 'Contratos Digitais'}
@@ -54,7 +54,7 @@ export const MesaNegociacao = () => {
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-green-400">{ofertasCompra.length}</div>
+              <div className="text-2xl font-bold text-[#10B981]">{ofertasCompra.length}</div>
               <div className="text-xs text-[#64748b]">Ofertas Ativas</div>
             </div>
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
@@ -62,7 +62,7 @@ export const MesaNegociacao = () => {
               <div className="text-xs text-[#64748b]">Volume Total (sc)</div>
             </div>
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-yellow-400">R$ 142.80</div>
+              <div className="text-2xl font-bold text-[#F59E0B]">R$ 142.80</div>
               <div className="text-xs text-[#64748b]">Preço Médio Soja</div>
             </div>
           </div>
@@ -92,7 +92,7 @@ export const MesaNegociacao = () => {
                   {ofertasCompra.map((oferta) => (
                     <tr
                       key={oferta.id}
-                      className={`border-b border-[#334155]/50 cursor-pointer transition-colors ${selectedOferta === oferta.id ? 'bg-green-900/20' : 'hover:bg-[#0f172a]/40'}`}
+                      className={`border-b border-[#334155]/50 cursor-pointer transition-colors ${selectedOferta === oferta.id ? 'bg-[#064E3B]/20' : 'hover:bg-[#0f172a]/40'}`}
                       onClick={() => setSelectedOferta(oferta.id === selectedOferta ? null : oferta.id)}
                     >
                       <td className="px-5 py-3">
@@ -103,7 +103,7 @@ export const MesaNegociacao = () => {
                         <Badge variant={oferta.produto === 'Soja' ? 'green' : 'yellow'}>{oferta.produto}</Badge>
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-[#f1f5f9]">{oferta.volume.toLocaleString('pt-BR')}</td>
-                      <td className="px-4 py-3 text-right font-bold text-green-400 font-mono">R$ {oferta.preco.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-right font-bold text-[#10B981] font-mono">R$ {oferta.preco.toFixed(2)}</td>
                       <td className="px-4 py-3 text-[#94a3b8] text-xs">{oferta.origem}</td>
                       <td className="px-4 py-3 text-[#94a3b8] text-xs">{oferta.prazo}</td>
                       <td className="px-5 py-3 text-right">
@@ -130,7 +130,7 @@ export const MesaNegociacao = () => {
             />
             <div className="space-y-4">
               {leilaoData.map((l, i) => (
-                <div key={i} className={`border rounded-xl p-4 ${l.status === 'Ativo' ? 'border-green-700/50 bg-green-900/10' : 'border-[#334155] bg-[#0f172a]/40'}`}>
+                <div key={i} className={`border rounded-xl p-4 ${l.status === 'Ativo' ? 'border-[#047857]/50 bg-[#064E3B]/10' : 'border-[#334155] bg-[#0f172a]/40'}`}>
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <div className="flex items-center gap-2">
@@ -141,13 +141,13 @@ export const MesaNegociacao = () => {
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-[#64748b]">Encerramento</div>
-                      <div className={`text-sm font-bold ${l.status === 'Ativo' ? 'text-yellow-400' : 'text-[#94a3b8]'}`}>{l.encerramento}</div>
+                      <div className={`text-sm font-bold ${l.status === 'Ativo' ? 'text-[#F59E0B]' : 'text-[#94a3b8]'}`}>{l.encerramento}</div>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-xs text-[#64748b]">Lance atual</div>
-                      <div className="text-xl font-bold text-green-400">{l.lance}</div>
+                      <div className="text-xl font-bold text-[#10B981]">{l.lance}</div>
                     </div>
                     {l.status === 'Ativo' && (
                       <div className="flex gap-2">
@@ -206,12 +206,12 @@ export const MesaNegociacao = () => {
                         <Badge variant={c.produto === 'Soja' ? 'green' : 'yellow'}>{c.produto}</Badge>
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-[#f1f5f9]">{c.volume.toLocaleString('pt-BR')} sc</td>
-                      <td className="px-4 py-3 text-right font-bold text-green-400 font-mono">R$ {c.preco.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-right font-bold text-[#10B981] font-mono">R$ {c.preco.toFixed(2)}</td>
                       <td className="px-4 py-3 text-[#f1f5f9]">{c.contraparte}</td>
                       <td className="px-4 py-3 text-[#94a3b8] text-xs">{c.vencimento}</td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-1.5">
-                          <Icon size={13} className={sc.variant === 'green' ? 'text-green-400' : sc.variant === 'yellow' ? 'text-yellow-400' : 'text-blue-400'} />
+                          <Icon size={13} className={sc.variant === 'green' ? 'text-[#10B981]' : sc.variant === 'yellow' ? 'text-[#F59E0B]' : 'text-[#3B82F6]'} />
                           <Badge variant={sc.variant}>{c.status}</Badge>
                         </div>
                       </td>
