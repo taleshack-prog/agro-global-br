@@ -29,7 +29,7 @@ export const StatCard = ({ label, value, subvalue, change, changeLabel, icon, ac
   return (
     <div
       className={`bg-[#1e293b] border border-[#334155] rounded-[12px] ${accent ? `border-l-4 ${accentBorder[accent]}` : ''}`}
-      style={{ padding: 'var(--spacing-lg)' }}
+      style={{ padding: 'var(--spacing-lg)', boxShadow: 'var(--shadow-sm)' }}
     >
       <div className="flex items-center justify-between" style={{ marginBottom: 'var(--spacing-sm)' }}>
         <span className="text-xs text-[#64748b] font-medium uppercase tracking-wide">{label}</span>

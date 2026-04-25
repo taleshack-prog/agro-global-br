@@ -7,13 +7,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:   'bg-[#10B981] text-white hover:bg-[#10B981]/90 focus:ring-[#10B981]',
-        secondary: 'bg-[#F59E0B] text-white hover:bg-[#F59E0B]/90 focus:ring-[#F59E0B]',
-        accent:    'bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 focus:ring-[#3B82F6]',
+        primary:   'bg-[#10B981] text-white hover:bg-[#10B981]/90 focus:ring-[#10B981] shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-primary)]',
+        secondary: 'bg-[#F59E0B] text-white hover:bg-[#F59E0B]/90 focus:ring-[#F59E0B] shadow-[var(--shadow-xs)]',
+        accent:    'bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 focus:ring-[#3B82F6] shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-accent)]',
         outline:   'border-2 border-[#10B981] text-[#10B981] hover:bg-[#10B981]/10 focus:ring-[#10B981]',
         ghost:     'text-[#10B981] hover:bg-[#10B981]/10 focus:ring-[#10B981]',
-        danger:    'bg-[#EF4444] text-white hover:bg-[#EF4444]/90 focus:ring-[#EF4444]',
-        muted:     'bg-[#334155] text-[#f1f5f9] hover:bg-[#475569] focus:ring-[#475569]',
+        danger:    'bg-[#EF4444] text-white hover:bg-[#EF4444]/90 focus:ring-[#EF4444] shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-danger)]',
+        muted:     'bg-[#334155] text-[#f1f5f9] hover:bg-[#475569] focus:ring-[#475569] shadow-[var(--shadow-xs)]',
       },
       size: {
         xs: 'px-2 py-1 text-xs rounded-[4px]',
