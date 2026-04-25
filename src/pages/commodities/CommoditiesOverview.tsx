@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Package, TrendingUp, Leaf, Zap, ArrowRight } from 'lucide-react';
 import { Card, CardHeader } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
@@ -11,14 +10,15 @@ const CATEGORY_ICONS: Record<string, string> = {
   'pescado': '🐟', 'madeira': '🪵',
 };
 
-export const CommoditiesOverview = () => {
-  const navigate = useNavigate();
+interface Props {
+  onNavigate: (view: string, param?: string) => void;
+}
+
+export const CommoditiesOverview = ({ onNavigate }: Props) => {
   const stats = getStatistics();
   const categories = getCategories();
   const countByCat = countByCategory();
-  const featured = getAllCommodities()
-    .filter(c => c.attributes.hedge_disponível)
-    .slice(0, 6);
+  const featured = getAllCommodities().filter(c => c.attributes.hedge_disponível).slice(0, 6);
 
   return (
     <div className="space-y-8">
@@ -29,7 +29,6 @@ export const CommoditiesOverview = () => {
         </p>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: 'Total', value: stats.total, icon: <Package size={22} />, color: 'text-agro-primary' },
@@ -45,14 +44,13 @@ export const CommoditiesOverview = () => {
         ))}
       </div>
 
-      {/* Categories grid */}
       <Card>
         <CardHeader title="Categorias" subtitle="Clique para explorar" icon={<Leaf size={16} />} />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => navigate(`/commodities/category/${cat}`)}
+              onClick={() => onNavigate('category', cat)}
               className="p-4 bg-surface rounded-[12px] border border-border hover:border-agro-primary hover:bg-agro-primary/5 transition-all text-center group"
             >
               <div className="text-2xl mb-1">{CATEGORY_ICONS[cat] ?? '📦'}</div>
@@ -63,11 +61,10 @@ export const CommoditiesOverview = () => {
         </div>
       </Card>
 
-      {/* Featured (with hedge) */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-bold text-text-primary">Com Hedge Disponível</h2>
-          <Button variant="ghost" size="sm" onClick={() => navigate('/commodities/hedge')} icon={<ArrowRight size={14} />}>
+          <Button variant="ghost" size="sm" onClick={() => onNavigate('hedge')} icon={<ArrowRight size={14} />}>
             Ver todas
           </Button>
         </div>
@@ -75,7 +72,7 @@ export const CommoditiesOverview = () => {
           {featured.map(c => (
             <button
               key={c.id}
-              onClick={() => navigate(`/commodities/${c.id}`)}
+              onClick={() => onNavigate('detail', c.id)}
               className="text-left p-4 bg-surface-2 border border-border rounded-[12px] hover:border-agro-primary hover:shadow-[var(--shadow-md)] transition-all group"
             >
               <div className="flex items-start justify-between mb-2">
@@ -88,9 +85,6 @@ export const CommoditiesOverview = () => {
               <div className="flex gap-2 mt-3">
                 <Badge variant="gray" size="sm">{c.unit}</Badge>
                 <Badge variant="gray" size="sm">{c.preços.moeda}</Badge>
-                <Badge variant={c.attributes.perecibilidade === 'alta' ? 'danger' : 'gray'} size="sm">
-                  {c.attributes.perecibilidade}
-                </Badge>
               </div>
               <p className="text-xs text-text-muted mt-2">
                 Margem: <span className="text-agro-primary font-mono">{c.attributes.margem_típica}</span>
