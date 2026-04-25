@@ -21,6 +21,7 @@ import { CommodityDetail } from './pages/commodities/CommodityDetail';
 import { CommodityCategory } from './pages/commodities/CommodityCategory';
 import { CommodityHedge } from './pages/commodities/CommodityHedge';
 import { PricesDashboard } from './pages/PricesDashboard';
+import { HedgeDashboard } from './pages/HedgeDashboard';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -78,6 +79,16 @@ const NAV_ITEMS: SidebarItem[] = [
     bgActive: 'bg-agro-primary/10 border-agro-primary/40',
   },
   {
+    id: 'hedge-sistema',
+    label: 'Sistema de Hedge',
+    sublabel: 'Recomendações · Alertas · BT',
+    icon: <Shield size={18} />,
+    badge: '!',
+    badgeVariant: 'danger' as const,
+    color: 'text-agro-danger',
+    bgActive: 'bg-agro-danger/10 border-agro-danger/40',
+  },
+  {
     id: 'precos',
     label: 'Preços Ao Vivo',
     sublabel: 'WebSocket · Price Service',
@@ -112,6 +123,7 @@ const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
   financeiro: <FinanceiroCredito />,
   logistica:  <LogisticaInteligente />,
   esg:        <ESGRastreabilidade />,
+  'hedge-sistema': <HedgeDashboard />,
   precos: <PricesDashboard />,
   commodities: <CommodityExplorer />,
   componentes: <ComponentsShowcase />,
