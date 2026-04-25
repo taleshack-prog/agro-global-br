@@ -9,7 +9,7 @@ interface CardProps {
 export const Card = ({ children, className = '', padding = true }: CardProps) => (
   <div
     className={`bg-[#1e293b] border border-[#334155] rounded-[12px] ${className}`}
-    style={padding ? { padding: 'var(--spacing-lg)' } : undefined}
+    style={{ boxShadow: 'var(--shadow-md)', ...(padding ? { padding: 'var(--spacing-lg)' } : {}) }}
   >
     {children}
   </div>
