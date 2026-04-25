@@ -1,9 +1,10 @@
-import { TrendingUp, TrendingDown, CloudRain, AlertTriangle, Info, Zap, RefreshCw } from 'lucide-react';
+import { TrendingUp, TrendingDown, CloudRain, AlertTriangle, Info, Zap, RefreshCw, Wifi, WifiOff } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, CardHeader } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { StatCard } from '../ui/StatCard';
-import { cotacoes, macroIndicadores, alertasClima, precoHistorico } from '../../data/mockData';
+import { cotacoes as mockCotacoes, macroIndicadores as mockMacro, alertasClima, precoHistorico } from '../../data/mockData';
+import { useMarketWebSocket } from '../../hooks/useMarketWebSocket';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -22,6 +23,28 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export const DashboardMercado = () => {
+  const { quotes: liveQuotes, macro: liveMacro, connected, lastUpdated } = useMarketWebSocket(['quotes', 'macro']);
+
+  // Use live data when available, fall back to mock
+  const cotacoes = liveQuotes.length > 0
+    ? liveQuotes.map((q: any) => ({
+        praça: q.praça || q.symbol,
+        produto: q.produto?.includes('SOJA') || q.symbol?.includes('SOJA') ? 'Soja' : 'Milho',
+        preco: q.price,
+        basis: q.basis ?? 0,
+        variacao: q.changePct,
+      }))
+    : mockCotacoes;
+
+  const macroIndicadores = liveMacro.length > 0
+    ? liveMacro.map((m: any) => ({
+        nome: m.symbol || m.produto,
+        valor: m.price,
+        variacao: m.changePct,
+        unidade: '',
+      }))
+    : mockMacro;
+
   const soja = cotacoes.filter(c => c.produto === 'Soja');
   const milho = cotacoes.filter(c => c.produto === 'Milho');
 
@@ -31,12 +54,22 @@ export const DashboardMercado = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-[#f1f5f9]">Dashboard de Mercado</h2>
-          <p className="text-sm text-[#64748b] mt-0.5">Atualizado em {new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })} · Tempo real</p>
+          <p className="text-sm text-[#64748b] mt-0.5">
+          {lastUpdated
+            ? `Atualizado às ${lastUpdated.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`
+            : 'Carregando dados...'}
+        </p>
         </div>
-        <button className="flex items-center gap-2 text-xs text-[#94a3b8] hover:text-[#f1f5f9] bg-[#1e293b] border border-[#334155] px-3 py-2 rounded-lg transition-colors">
-          <RefreshCw size={13} />
-          Atualizar
-        </button>
+        <div className="flex items-center gap-2">
+          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border ${connected ? 'bg-green-900/30 border-green-700/50 text-green-400' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
+            {connected ? <Wifi size={12} /> : <WifiOff size={12} />}
+            {connected ? 'Ao vivo' : 'Offline'}
+          </div>
+          <button className="flex items-center gap-2 text-xs text-[#94a3b8] hover:text-[#f1f5f9] bg-[#1e293b] border border-[#334155] px-3 py-2 rounded-lg transition-colors">
+            <RefreshCw size={13} />
+            Atualizar
+          </button>
+        </div>
       </div>
 
       {/* Indicadores Macro */}
