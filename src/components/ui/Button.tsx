@@ -1,6 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { Loader2 } from 'lucide-react';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-surface disabled:opacity-50 disabled:cursor-not-allowed active:scale-95',
@@ -16,14 +17,18 @@ const buttonVariants = cva(
         muted:     'bg-surface-3 text-text-primary hover:bg-[#475569] focus:ring-[#475569] shadow-[var(--shadow-xs)]',
       },
       size: {
-        xs: 'px-2 py-1 text-xs  rounded-[4px]',
-        sm: 'px-3 py-2 text-sm  rounded-[8px]',
-        md: 'px-4 py-2 text-base rounded-[8px]',
-        lg: 'px-6 py-3 text-lg  rounded-[12px]',
-        xl: 'px-8 py-4 text-xl  rounded-[12px]',
+        xs: 'px-2 py-1   text-xs  rounded-[4px]  h-8',
+        sm: 'px-3 py-2   text-sm  rounded-[8px]  h-10',
+        md: 'px-4 py-2   text-base rounded-[8px] h-12',
+        lg: 'px-6 py-3   text-lg  rounded-[12px] h-14',
+        xl: 'px-8 py-4   text-xl  rounded-[12px] h-16',
       },
       fullWidth: {
         true:  'w-full',
+        false: '',
+      },
+      isToggled: {
+        true:  'ring-2 ring-offset-2 ring-agro-primary',
         false: '',
       },
     },
@@ -31,21 +36,50 @@ const buttonVariants = cva(
       variant: 'primary',
       size: 'md',
       fullWidth: false,
+      isToggled: false,
     },
   }
 );
 
 interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  isLoading?: boolean;
+  error?: string | null;
+  icon?: React.ReactNode;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, fullWidth, ...props }, ref) => (
-    <button
-      className={cn(buttonVariants({ variant, size, fullWidth, className }))}
-      ref={ref}
-      {...props}
-    />
+  ({ className, variant, size, fullWidth, isToggled, isLoading = false, error = null, icon, children, disabled, ...props }, ref) => (
+    <div className="flex flex-col gap-1">
+      <button
+        ref={ref}
+        disabled={disabled || isLoading}
+        aria-busy={isLoading}
+        aria-invalid={!!error}
+        className={cn(buttonVariants({
+          variant: error ? 'danger' : variant,
+          size,
+          fullWidth,
+          isToggled: isToggled ?? false,
+          className,
+        }))}
+        {...props}
+      >
+        {isLoading ? (
+          <>
+            <Loader2 size={16} className="animate-spin" />
+            Carregando...
+          </>
+        ) : (
+          <>
+            {icon}
+            {children}
+          </>
+        )}
+      </button>
+      {error && <p className="text-xs text-agro-danger">{error}</p>}
+    </div>
   )
 );
 Button.displayName = 'Button';

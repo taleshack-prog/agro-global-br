@@ -6,10 +6,11 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  description?: string;
   children: React.ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-  /** Prevent closing when clicking the backdrop */
   disableBackdropClose?: boolean;
+  closeButton?: boolean;
   footer?: React.ReactNode;
 }
 
@@ -25,18 +26,18 @@ const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   title,
+  description,
   children,
   size = 'md',
   disableBackdropClose = false,
+  closeButton = true,
   footer,
 }) => {
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Close on Escape key
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
   }, [onClose]);
@@ -50,10 +51,15 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? 'modal-title' : undefined}
+    >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={disableBackdropClose ? undefined : onClose}
         aria-hidden="true"
       />
@@ -69,25 +75,34 @@ const Modal: React.FC<ModalProps> = ({
         style={{ maxHeight: 'calc(100vh - 2rem)' }}
       >
         {/* Header */}
-        {title && (
-          <div className="flex items-center justify-between border-b border-border px-6 py-4 shrink-0">
-            <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
+        <div className="flex items-start justify-between border-b border-border px-6 py-4 shrink-0">
+          <div>
+            {title && (
+              <h2 id="modal-title" className="text-lg font-semibold text-text-primary">
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p className="text-sm text-text-muted mt-1">{description}</p>
+            )}
+          </div>
+          {closeButton && (
             <button
               onClick={onClose}
-              className="text-text-muted hover:text-text-primary transition-colors rounded-[8px] p-1 hover:bg-surface-3"
+              className="text-text-muted hover:text-text-primary transition-colors rounded-[8px] p-1 hover:bg-surface-3 ml-4 shrink-0"
               aria-label="Fechar"
             >
               <X size={20} />
             </button>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* Body — scrollable */}
+        {/* Body */}
         <div className="px-6 py-4 overflow-y-auto flex-1 text-text-primary">
           {children}
         </div>
 
-        {/* Footer (optional) */}
+        {/* Footer */}
         {footer && (
           <div className="flex items-center justify-end gap-3 border-t border-border px-6 py-4 shrink-0">
             {footer}
