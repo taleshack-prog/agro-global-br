@@ -6,17 +6,20 @@ import { cn } from '@/lib/utils';
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
   padding?: boolean;
+  variant?: 'default' | 'elevated' | 'outlined';
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hover = false, padding = true, ...props }, ref) => (
+  ({ className, hover = false, padding = true, variant = 'default', ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        'bg-surface-2 border border-border rounded-[12px]',
-        'shadow-[var(--shadow-md)]',
+        'rounded-[12px] transition-all duration-200',
+        variant === 'default'  && 'bg-surface-2 border border-border shadow-[var(--shadow-md)]',
+        variant === 'elevated' && 'bg-surface-2 shadow-[var(--shadow-lg)]',
+        variant === 'outlined' && 'bg-transparent border-2 border-border',
         padding && 'p-[var(--spacing-lg)]',
-        hover && 'hover:shadow-[var(--shadow-lg)] hover:border-border/80 transition-all duration-200 cursor-pointer',
+        hover && 'hover:shadow-[var(--shadow-lg)] hover:border-border/80 cursor-pointer',
         className
       )}
       {...props}
@@ -56,9 +59,7 @@ const CardHeader = ({ title, subtitle, action, icon, className }: CardHeaderProp
 
 // ─── CardContent ──────────────────────────────────────────────────────────────
 
-interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
+const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn('p-[var(--spacing-lg)] pt-0', className)} {...props} />
   )
@@ -67,14 +68,13 @@ CardContent.displayName = 'CardContent';
 
 // ─── CardFooter ───────────────────────────────────────────────────────────────
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
+const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        'flex items-center justify-between p-[var(--spacing-lg)] pt-0 border-t border-border mt-[var(--spacing-lg)]',
+        'flex items-center justify-between p-[var(--spacing-lg)] pt-0',
+        'border-t border-border mt-[var(--spacing-lg)]',
         className
       )}
       {...props}
