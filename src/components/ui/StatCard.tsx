@@ -15,7 +15,6 @@ const accentBorder: Record<string, string> = {
   secondary: 'border-l-[#F59E0B]',
   accent:    'border-l-[#3B82F6]',
   danger:    'border-l-[#EF4444]',
-  // legacy aliases
   green:     'border-l-[#10B981]',
   red:       'border-l-[#EF4444]',
   blue:      'border-l-[#3B82F6]',
@@ -28,15 +27,20 @@ export const StatCard = ({ label, value, subvalue, change, changeLabel, icon, ac
   const isNeutral  = change !== undefined && change === 0;
 
   return (
-    <div className={`bg-[#1e293b] border border-[#334155] rounded-xl p-4 ${accent ? `border-l-4 ${accentBorder[accent]}` : ''}`}>
-      <div className="flex items-center justify-between mb-2">
+    <div
+      className={`bg-[#1e293b] border border-[#334155] rounded-[12px] ${accent ? `border-l-4 ${accentBorder[accent]}` : ''}`}
+      style={{ padding: 'var(--spacing-lg)' }}
+    >
+      <div className="flex items-center justify-between" style={{ marginBottom: 'var(--spacing-sm)' }}>
         <span className="text-xs text-[#64748b] font-medium uppercase tracking-wide">{label}</span>
         {icon && <div className="text-[#64748b]">{icon}</div>}
       </div>
-      <div className="text-xl font-bold text-[#f1f5f9] mb-1">{value}</div>
-      {subvalue && <div className="text-xs text-[#94a3b8] mb-1">{subvalue}</div>}
+      <div className="text-xl font-bold text-[#f1f5f9]" style={{ marginBottom: 'var(--spacing-xs)' }}>{value}</div>
+      {subvalue && (
+        <div className="text-xs text-[#94a3b8]" style={{ marginBottom: 'var(--spacing-xs)' }}>{subvalue}</div>
+      )}
       {change !== undefined && (
-        <div className={`flex items-center gap-1 text-xs font-medium ${isPositive ? 'text-[#10B981]' : isNegative ? 'text-[#EF4444]' : 'text-slate-400'}`}>
+        <div className={`flex items-center text-xs font-medium ${isPositive ? 'text-[#10B981]' : isNegative ? 'text-[#EF4444]' : 'text-slate-400'}`} style={{ gap: 'var(--spacing-xs)' }}>
           {isPositive && <TrendingUp size={12} />}
           {isNegative && <TrendingDown size={12} />}
           {isNeutral  && <Minus size={12} />}
