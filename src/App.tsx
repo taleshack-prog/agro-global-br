@@ -20,6 +20,7 @@ import { AllCommodities } from './pages/commodities/AllCommodities';
 import { CommodityDetail } from './pages/commodities/CommodityDetail';
 import { CommodityCategory } from './pages/commodities/CommodityCategory';
 import { CommodityHedge } from './pages/commodities/CommodityHedge';
+import { PricesDashboard } from './pages/PricesDashboard';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -77,6 +78,16 @@ const NAV_ITEMS: SidebarItem[] = [
     bgActive: 'bg-agro-primary/10 border-agro-primary/40',
   },
   {
+    id: 'precos',
+    label: 'Preços Ao Vivo',
+    sublabel: 'WebSocket · Price Service',
+    icon: <TrendingUp size={18} />,
+    badge: 'LIVE',
+    badgeVariant: 'primary' as const,
+    color: 'text-agro-primary',
+    bgActive: 'bg-agro-primary/10 border-agro-primary/40',
+  },
+  {
     id: 'commodities',
     label: 'Commodities',
     sublabel: 'Explorer · 30 produtos',
@@ -101,6 +112,7 @@ const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
   financeiro: <FinanceiroCredito />,
   logistica:  <LogisticaInteligente />,
   esg:        <ESGRastreabilidade />,
+  precos: <PricesDashboard />,
   commodities: <CommodityExplorer />,
   componentes: <ComponentsShowcase />,
 };
