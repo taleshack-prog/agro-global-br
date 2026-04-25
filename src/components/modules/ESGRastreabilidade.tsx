@@ -18,7 +18,7 @@ const scoreColor = (score: number) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-3 shadow-xl">
+      <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-3 shadow-xl">
         <p className="text-xs text-[#94a3b8]">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-xs font-semibold" style={{ color: p.fill }}>R$ {p.value.toLocaleString('pt-BR')}</p>
@@ -53,8 +53,8 @@ export const ESGRastreabilidade = () => {
 
       {/* Score Principal */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-1 bg-gradient-to-br from-[#064E3B]/40 to-[#064E3B]/10 border border-[#047857]/40 rounded-xl p-6 flex flex-col items-center justify-center text-center">
-          <div className="p-4 bg-[#064E3B]/50 rounded-full mb-4">
+        <div className="md:col-span-1 bg-gradient-to-br from-[#064E3B]/40 to-[#064E3B]/10 border border-[#047857]/40 rounded-[12px] p-6 flex flex-col items-center justify-center text-center">
+          <div className="p-4 bg-[#064E3B]/50 rounded-[9999px] mb-4">
             <Leaf size={36} className="text-[#10B981]" />
           </div>
           <div className="text-xs text-[#94a3b8] font-medium uppercase tracking-wide mb-2">Score ESG Global</div>
@@ -116,17 +116,17 @@ export const ESGRastreabilidade = () => {
 
           <div className="px-5 pb-4">
             <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="bg-[#0f172a] rounded-lg p-3 text-center">
+              <div className="bg-[#0f172a] rounded-[12px] p-3 text-center">
                 <div className="text-xl font-bold text-[#10B981]">{carbonoCreditos.reduce((a, b) => a + b.creditos, 0)}</div>
                 <div className="text-xs text-[#64748b]">Créditos Totais</div>
               </div>
-              <div className="bg-[#0f172a] rounded-lg p-3 text-center">
+              <div className="bg-[#0f172a] rounded-[12px] p-3 text-center">
                 <div className="text-xl font-bold text-[#f1f5f9]">
                   R$ {carbonoCreditos.reduce((a, b) => a + b.total, 0).toLocaleString('pt-BR')}
                 </div>
                 <div className="text-xs text-[#64748b]">Valor Portfólio</div>
               </div>
-              <div className="bg-[#0f172a] rounded-lg p-3 text-center">
+              <div className="bg-[#0f172a] rounded-[12px] p-3 text-center">
                 <div className="text-xl font-bold text-[#F59E0B]">
                   R$ {(carbonoCreditos.reduce((a, b) => a + b.total, 0) / carbonoCreditos.reduce((a, b) => a + b.creditos, 0)).toFixed(0)}
                 </div>
@@ -219,13 +219,13 @@ export const ESGRastreabilidade = () => {
             <div className="text-xs font-semibold text-[#64748b] uppercase tracking-wide">Selos e Certificações</div>
             <div className="flex flex-wrap gap-2">
               {['Soja Plus', 'RTRS', 'Rainforest Alliance', 'Non-GMO', 'Carbon Neutral 2025', 'BONSUCRO'].map(selo => (
-                <div key={selo} className="flex items-center gap-1.5 bg-[#064E3B]/30 border border-[#047857]/40 rounded-full px-3 py-1">
+                <div key={selo} className="flex items-center gap-1.5 bg-[#064E3B]/30 border border-[#047857]/40 rounded-[9999px] px-3 py-1">
                   <Award size={11} className="text-[#10B981]" />
                   <span className="text-xs text-[#6EE7B7] font-medium">{selo}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-4 bg-[#064E3B]/20 border border-[#047857]/30 rounded-lg p-3">
+            <div className="mt-4 bg-[#064E3B]/20 border border-[#047857]/30 rounded-[12px] p-3">
               <p className="text-xs text-[#94a3b8]">
                 <span className="text-[#6EE7B7] font-semibold">+R$ 4,20/sc</span> de prêmio comercial disponível para produtos com rastreabilidade certificada nesta safra.
               </p>

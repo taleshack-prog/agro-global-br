@@ -9,7 +9,7 @@ import { useMarketWebSocket } from '../../hooks/useMarketWebSocket';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-3 shadow-xl">
+      <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-3 shadow-xl">
         <p className="text-xs text-[#94a3b8] mb-2">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-xs font-semibold" style={{ color: p.color }}>
@@ -61,11 +61,11 @@ export const DashboardMercado = () => {
         </p>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border ${connected ? 'bg-[#064E3B]/30 border-[#047857]/50 text-[#10B981]' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
+          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-[12px] border ${connected ? 'bg-[#064E3B]/30 border-[#047857]/50 text-[#10B981]' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
             {connected ? <Wifi size={12} /> : <WifiOff size={12} />}
             {connected ? 'Ao vivo' : 'Offline'}
           </div>
-          <button className="flex items-center gap-2 text-xs text-[#94a3b8] hover:text-[#f1f5f9] bg-[#1e293b] border border-[#334155] px-3 py-2 rounded-lg transition-colors">
+          <button className="flex items-center gap-2 text-xs text-[#94a3b8] hover:text-[#f1f5f9] bg-[#1e293b] border border-[#334155] px-3 py-2 rounded-[12px] transition-colors">
             <RefreshCw size={13} />
             Atualizar
           </button>
@@ -215,7 +215,7 @@ export const DashboardMercado = () => {
             return (
               <div
                 key={i}
-                className={`flex items-start gap-3 p-3 rounded-lg border ${
+                className={`flex items-start gap-3 p-3 rounded-[12px] border ${
                   isDanger ? 'bg-[#7F1D1D]/20 border-[#991B1B]/40' :
                   isWarning ? 'bg-[#78350F]/20 border-[#92400E]/40' :
                   'bg-[#1E3A8A]/20 border-[#1E40AF]/40'

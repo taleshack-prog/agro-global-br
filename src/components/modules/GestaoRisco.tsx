@@ -15,7 +15,7 @@ const margemColors = ['#ef4444', '#16a34a', '#22c55e'];
 const CustomTooltipMargem = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-3 shadow-xl">
+      <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-3 shadow-xl">
         <p className="text-xs text-[#94a3b8] mb-2 font-semibold">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-xs" style={{ color: p.fill }}>
@@ -55,9 +55,9 @@ export const GestaoRisco = () => {
       </div>
 
       {/* Recomendação de IA */}
-      <div className="bg-gradient-to-r from-[#064E3B]/40 to-[#064E3B]/20 border border-[#047857]/50 rounded-xl p-5">
+      <div className="bg-gradient-to-r from-[#064E3B]/40 to-[#064E3B]/20 border border-[#047857]/50 rounded-[12px] p-5">
         <div className="flex items-start gap-3">
-          <div className="p-2 bg-[#059669]/30 rounded-lg text-[#10B981] mt-0.5">
+          <div className="p-2 bg-[#059669]/30 rounded-[12px] text-[#10B981] mt-0.5">
             <Lightbulb size={20} />
           </div>
           <div className="flex-1">
@@ -117,12 +117,12 @@ export const GestaoRisco = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-[#0f172a] rounded-lg p-3">
+              <div className="bg-[#0f172a] rounded-[12px] p-3">
                 <div className="text-xs text-[#64748b] mb-1">Sacas protegidas</div>
                 <div className="text-lg font-bold text-[#f1f5f9]">{sacasProtegidas.toLocaleString('pt-BR')}</div>
                 <div className="text-xs text-[#94a3b8]">de {totalSafra.toLocaleString('pt-BR')} sc</div>
               </div>
-              <div className="bg-[#0f172a] rounded-lg p-3">
+              <div className="bg-[#0f172a] rounded-[12px] p-3">
                 <div className="text-xs text-[#64748b] mb-1">Receita garantida</div>
                 <div className="text-lg font-bold text-[#10B981]">R$ {receita.toLocaleString('pt-BR')}</div>
                 <div className="text-xs text-[#94a3b8]">@ R$ {hedgeRecomendacao.precoAtual}/sc</div>
@@ -208,7 +208,7 @@ export const GestaoRisco = () => {
           </div>
           <div className="space-y-3">
             {cenariosMargem.map((c, i) => (
-              <div key={c.cenario} className="bg-[#0f172a] rounded-lg p-3">
+              <div key={c.cenario} className="bg-[#0f172a] rounded-[12px] p-3">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-xs font-semibold" style={{ color: margemColors[i] }}>{c.cenario}</span>
                   <Badge variant={i === 0 ? 'red' : i === 1 ? 'blue' : 'green'}>{c.roi.toFixed(1)}% ROI</Badge>
@@ -230,7 +230,7 @@ export const GestaoRisco = () => {
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {varCenarios.map((v, i) => (
-            <div key={i} className="bg-[#0f172a] border border-[#7F1D1D]/30 rounded-lg p-4">
+            <div key={i} className="bg-[#0f172a] border border-[#7F1D1D]/30 rounded-[12px] p-4">
               <div className="text-xs text-[#64748b] mb-2">{v.fator}</div>
               <div className="text-xl font-bold text-[#EF4444]">
                 - R$ {Math.abs(v.impacto).toLocaleString('pt-BR')}
