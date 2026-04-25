@@ -16,7 +16,9 @@
     "db:studio": "npm --prefix server run db:studio",
     "server:install": "npm --prefix server install",
     "setup": "npm install && npm --prefix server install",
-    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\""
+    "db:setup": "bash scripts/setup-db.sh",
+    "dev:frontend": "vite",
+    "dev:all": "concurrently -n \"frontend,backend\" -c \"cyan,green\" \"npm run dev\" \"npm run server:dev\""
   },
   "dependencies": {
     "date-fns": "^4.1.0",
