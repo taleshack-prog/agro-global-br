@@ -1,17 +1,19 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'success' | 'warning' | 'info';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
 }
 
 const variants = {
-  primary: 'bg-green-600 hover:bg-green-500 text-white border border-green-500',
+  primary:   'bg-[#10B981] hover:bg-[#059669] text-white border border-[#10B981]',
   secondary: 'bg-[#334155] hover:bg-[#475569] text-[#f1f5f9] border border-[#475569]',
-  ghost: 'bg-transparent hover:bg-[#334155] text-[#94a3b8] border border-transparent',
-  danger: 'bg-red-700 hover:bg-red-600 text-white border border-red-600',
-  success: 'bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-600',
+  ghost:     'bg-transparent hover:bg-[#334155] text-[#94a3b8] border border-transparent',
+  danger:    'bg-[#EF4444] hover:bg-[#DC2626] text-white border border-[#EF4444]',
+  success:   'bg-[#10B981] hover:bg-[#059669] text-white border border-[#10B981]',
+  warning:   'bg-[#F59E0B] hover:bg-[#D97706] text-white border border-[#F59E0B]',
+  info:      'bg-[#3B82F6] hover:bg-[#2563EB] text-white border border-[#3B82F6]',
 };
 
 const sizes = {

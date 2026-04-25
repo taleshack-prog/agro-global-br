@@ -61,7 +61,7 @@ export const DashboardMercado = () => {
         </p>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border ${connected ? 'bg-green-900/30 border-green-700/50 text-green-400' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
+          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border ${connected ? 'bg-[#064E3B]/30 border-[#047857]/50 text-[#10B981]' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
             {connected ? <Wifi size={12} /> : <WifiOff size={12} />}
             {connected ? 'Ao vivo' : 'Offline'}
           </div>
@@ -144,11 +144,11 @@ export const DashboardMercado = () => {
                   <tr key={i} className="border-b border-[#334155]/50 hover:bg-[#0f172a]/40 transition-colors">
                     <td className="px-5 py-3 text-[#f1f5f9] font-medium">{row.praça}</td>
                     <td className="px-4 py-3 text-right text-[#f1f5f9] font-mono">R$ {row.preco.toFixed(2)}</td>
-                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
                       {row.basis >= 0 ? '+' : ''}{row.basis.toFixed(2)}
                     </td>
                     <td className="px-5 py-3 text-right">
-                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
                         {row.variacao >= 0 ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
                         {row.variacao >= 0 ? '+' : ''}{row.variacao.toFixed(1)}%
                       </span>
@@ -184,11 +184,11 @@ export const DashboardMercado = () => {
                   <tr key={i} className="border-b border-[#334155]/50 hover:bg-[#0f172a]/40 transition-colors">
                     <td className="px-5 py-3 text-[#f1f5f9] font-medium">{row.praça}</td>
                     <td className="px-4 py-3 text-right text-[#f1f5f9] font-mono">R$ {row.preco.toFixed(2)}</td>
-                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
                       {row.basis >= 0 ? '+' : ''}{row.basis.toFixed(2)}
                     </td>
                     <td className="px-5 py-3 text-right">
-                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
                         {row.variacao >= 0 ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
                         {row.variacao >= 0 ? '+' : ''}{row.variacao.toFixed(1)}%
                       </span>
@@ -216,12 +216,12 @@ export const DashboardMercado = () => {
               <div
                 key={i}
                 className={`flex items-start gap-3 p-3 rounded-lg border ${
-                  isDanger ? 'bg-red-900/20 border-red-800/40' :
-                  isWarning ? 'bg-yellow-900/20 border-yellow-800/40' :
-                  'bg-blue-900/20 border-blue-800/40'
+                  isDanger ? 'bg-[#7F1D1D]/20 border-[#991B1B]/40' :
+                  isWarning ? 'bg-[#78350F]/20 border-[#92400E]/40' :
+                  'bg-[#1E3A8A]/20 border-[#1E40AF]/40'
                 }`}
               >
-                <div className={`mt-0.5 ${isDanger ? 'text-red-400' : isWarning ? 'text-yellow-400' : 'text-blue-400'}`}>
+                <div className={`mt-0.5 ${isDanger ? 'text-[#EF4444]' : isWarning ? 'text-[#F59E0B]' : 'text-[#3B82F6]'}`}>
                   {isDanger ? <AlertTriangle size={16} /> : isWarning ? <AlertTriangle size={16} /> : <Info size={16} />}
                 </div>
                 <div className="flex-1 min-w-0">

@@ -43,7 +43,7 @@ export const LogisticaInteligente = () => {
             <select
               value={origemSelecionada}
               onChange={e => setOrigemSelecionada(e.target.value)}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-green-600 cursor-pointer"
+              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669] cursor-pointer"
             >
               {origens.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
@@ -53,7 +53,7 @@ export const LogisticaInteligente = () => {
             <select
               value={produto}
               onChange={e => setProduto(e.target.value)}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-green-600 cursor-pointer"
+              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669] cursor-pointer"
             >
               {produtos.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
@@ -64,7 +64,7 @@ export const LogisticaInteligente = () => {
               type="number"
               value={volume}
               onChange={e => setVolume(Number(e.target.value))}
-              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-green-600"
+              className="w-full bg-[#0f172a] border border-[#334155] rounded-lg px-3 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:border-[#059669]"
               min={1}
             />
           </div>
@@ -88,14 +88,14 @@ export const LogisticaInteligente = () => {
             const fretePorSaca = (rota.frete / volume).toFixed(2);
             const isBest = i === 0;
             return (
-              <Card key={i} className={isBest ? 'border-green-700/50 relative overflow-hidden' : ''}>
+              <Card key={i} className={isBest ? 'border-[#047857]/50 relative overflow-hidden' : ''}>
                 {isBest && (
-                  <div className="absolute top-0 right-0 bg-green-600 text-white text-xs px-3 py-1 rounded-bl-lg font-semibold">
+                  <div className="absolute top-0 right-0 bg-[#059669] text-white text-xs px-3 py-1 rounded-bl-lg font-semibold">
                     Melhor Opção
                   </div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-lg ${isBest ? 'bg-green-900/40 text-green-400' : 'bg-[#0f172a] text-[#64748b]'}`}>
+                  <div className={`p-3 rounded-lg ${isBest ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-[#0f172a] text-[#64748b]'}`}>
                     <Truck size={22} />
                   </div>
                   <div className="flex-1">
@@ -147,7 +147,7 @@ export const LogisticaInteligente = () => {
               {netbackItems.map((item, i) => (
                 <div key={i} className={`flex justify-between items-center py-2.5 ${i < netbackItems.length - 1 ? 'border-b border-[#334155]/50' : ''}`}>
                   <span className="text-xs text-[#94a3b8]">{item.label}</span>
-                  <span className={`text-sm font-semibold ${item.tipo === 'positivo' ? 'text-[#f1f5f9]' : 'text-red-400'}`}>
+                  <span className={`text-sm font-semibold ${item.tipo === 'positivo' ? 'text-[#f1f5f9]' : 'text-[#EF4444]'}`}>
                     {item.tipo === 'negativo' ? '-' : ''} R$ {item.valor.toFixed(2)}
                   </span>
                 </div>
@@ -157,14 +157,14 @@ export const LogisticaInteligente = () => {
             <div className="mt-4 pt-4 border-t border-[#334155]">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-bold text-[#f1f5f9]">Preço Líquido</span>
-                <span className="text-2xl font-bold text-green-400">R$ {netbackCalculo.precoLiquido.toFixed(2)}</span>
+                <span className="text-2xl font-bold text-[#10B981]">R$ {netbackCalculo.precoLiquido.toFixed(2)}</span>
               </div>
               <div className="text-xs text-[#64748b] text-right mt-0.5">por saca · ex-fazenda</div>
             </div>
 
             <div className="mt-4 bg-[#0f172a] rounded-lg p-3">
               <div className="text-xs text-[#64748b] mb-1">Para {volume.toLocaleString('pt-BR')} sacas</div>
-              <div className="text-xl font-bold text-green-400">
+              <div className="text-xl font-bold text-[#10B981]">
                 R$ {(netbackCalculo.precoLiquido * volume).toLocaleString('pt-BR')}
               </div>
               <div className="text-xs text-[#94a3b8]">Receita líquida estimada</div>

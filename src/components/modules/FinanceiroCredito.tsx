@@ -29,32 +29,32 @@ export const FinanceiroCredito = () => {
 
       {/* Score e Limite */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-br from-blue-900/40 to-blue-900/10 border border-blue-700/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#1E3A8A]/40 to-[#1E3A8A]/10 border border-[#1D4ED8]/40 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Shield size={18} className="text-blue-400" />
+            <Shield size={18} className="text-[#3B82F6]" />
             <span className="text-sm text-[#94a3b8] font-medium">Score de Crédito</span>
           </div>
-          <div className="text-4xl font-bold text-blue-300 mb-1">782</div>
+          <div className="text-4xl font-bold text-[#93C5FD] mb-1">782</div>
           <div className="text-xs text-[#64748b] mb-3">Excelente · Top 15% do setor</div>
           <ProgressBar value={782} max={1000} color="blue" />
         </div>
 
-        <div className="bg-gradient-to-br from-green-900/40 to-green-900/10 border border-green-700/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#064E3B]/40 to-green-900/10 border border-[#047857]/40 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <CreditCard size={18} className="text-green-400" />
+            <CreditCard size={18} className="text-[#10B981]" />
             <span className="text-sm text-[#94a3b8] font-medium">Limite de Crédito</span>
           </div>
-          <div className="text-3xl font-bold text-green-300 mb-1">R$ 2.000.000</div>
+          <div className="text-3xl font-bold text-[#6EE7B7] mb-1">R$ 2.000.000</div>
           <div className="text-xs text-[#64748b] mb-3">R$ {limiteCreditoUsado.toLocaleString('pt-BR')} utilizado</div>
           <ProgressBar value={limiteCreditoUsado} max={limiteCreditoTotal} color="green" />
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-900/40 to-yellow-900/10 border border-yellow-700/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#78350F]/40 to-yellow-900/10 border border-[#B45309]/40 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Coins size={18} className="text-yellow-400" />
+            <Coins size={18} className="text-[#F59E0B]" />
             <span className="text-sm text-[#94a3b8] font-medium">Lastro Disponível</span>
           </div>
-          <div className="text-3xl font-bold text-yellow-300 mb-1">5.000 sc</div>
+          <div className="text-3xl font-bold text-[#FCD34D] mb-1">5.000 sc</div>
           <div className="text-xs text-[#64748b] mb-3">Soja safra 2026/27 · ~R$ 712k</div>
           <ProgressBar value={60} color="yellow" />
         </div>
@@ -67,7 +67,7 @@ export const FinanceiroCredito = () => {
             key={t}
             onClick={() => setTab(t)}
             className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-150 ${
-              tab === t ? 'bg-green-700 text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
+              tab === t ? 'bg-[#047857] text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
             }`}
           >
             {t === 'credito' ? 'Crédito / Barter' : t === 'cpr' ? 'CPR Digital' : 'Seguros Param.'}
@@ -81,7 +81,7 @@ export const FinanceiroCredito = () => {
             <Card key={i}>
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="p-3 bg-[#0f172a] rounded-lg text-green-400">
+                  <div className="p-3 bg-[#0f172a] rounded-lg text-[#10B981]">
                     <CreditCard size={22} />
                   </div>
                   <div className="flex-1">
@@ -94,7 +94,7 @@ export const FinanceiroCredito = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
                       <div>
                         <div className="text-xs text-[#64748b]">Valor disponível</div>
-                        <div className="font-bold text-green-400">R$ {oferta.valor.toLocaleString('pt-BR')}</div>
+                        <div className="font-bold text-[#10B981]">R$ {oferta.valor.toLocaleString('pt-BR')}</div>
                       </div>
                       <div>
                         <div className="text-xs text-[#64748b]">Taxa</div>
@@ -133,7 +133,7 @@ export const FinanceiroCredito = () => {
             <Card key={i}>
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className={`p-3 rounded-lg ${cpr.status === 'Ativa' ? 'bg-green-900/40 text-green-400' : 'bg-slate-700/40 text-slate-400'}`}>
+                  <div className={`p-3 rounded-lg ${cpr.status === 'Ativa' ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-slate-700/40 text-slate-400'}`}>
                     <FileSignature size={22} />
                   </div>
                   <div className="flex-1">
@@ -185,16 +185,16 @@ export const FinanceiroCredito = () => {
 
       {tab === 'seguros' && (
         <div className="space-y-4">
-          <div className="bg-blue-900/20 border border-blue-700/40 rounded-xl p-4 mb-4">
+          <div className="bg-[#1E3A8A]/20 border border-[#1D4ED8]/40 rounded-xl p-4 mb-4">
             <p className="text-xs text-[#94a3b8]">
-              <span className="text-blue-300 font-semibold">Seguros Paramétricos</span> são acionados automaticamente quando gatilhos climáticos ou produtivos são alcançados, com base em dados de sensores e estações meteorológicas. Sem necessidade de perícia presencial.
+              <span className="text-[#93C5FD] font-semibold">Seguros Paramétricos</span> são acionados automaticamente quando gatilhos climáticos ou produtivos são alcançados, com base em dados de sensores e estações meteorológicas. Sem necessidade de perícia presencial.
             </p>
           </div>
           {seguros.map((s, i) => (
             <Card key={i}>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="p-3 bg-[#0f172a] rounded-lg text-blue-400">
+                  <div className="p-3 bg-[#0f172a] rounded-lg text-[#3B82F6]">
                     <Shield size={22} />
                   </div>
                   <div>

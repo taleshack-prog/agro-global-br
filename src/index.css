@@ -1,47 +1,47 @@
 @import "tailwindcss";
 
 @theme {
-  --color-agro-green: #16a34a;
-  --color-agro-green-dark: #15803d;
-  --color-agro-green-light: #dcfce7;
-  --color-agro-gold: #ca8a04;
-  --color-agro-gold-light: #fef9c3;
-  --color-agro-blue: #1d4ed8;
-  --color-agro-blue-light: #dbeafe;
-  --color-agro-red: #dc2626;
-  --color-agro-red-light: #fee2e2;
-  --color-surface: #0f172a;
+  /* ── Brand palette ───────────────────────────────────────────── */
+  --color-agro-primary:   #10B981;   /* Verde Agro  — botões, links, ações   */
+  --color-agro-secondary: #F59E0B;   /* Âmbar/Ouro  — destaques, avisos      */
+  --color-agro-accent:    #3B82F6;   /* Azul        — informações, dados      */
+  --color-agro-danger:    #EF4444;   /* Vermelho    — erros, alertas críticos */
+  --color-agro-success:   #10B981;   /* Verde       — sucesso, confirmação    */
+  --color-agro-warning:   #F59E0B;   /* Âmbar       — avisos, atenção        */
+  --color-agro-info:      #3B82F6;   /* Azul        — informações            */
+
+  /* ── Neutral palette ─────────────────────────────────────────── */
+  --color-agro-dark:   #1F2937;  /* Cinza escuro — texto principal  */
+  --color-agro-light:  #F9FAFB;  /* Cinza claro  — backgrounds      */
+  --color-agro-border: #E5E7EB;  /* Cinza borda  — divisores        */
+
+  /* ── Derived tints (10 % opacity backgrounds) ───────────────── */
+  --color-agro-primary-muted:   color-mix(in srgb, #10B981 15%, transparent);
+  --color-agro-secondary-muted: color-mix(in srgb, #F59E0B 15%, transparent);
+  --color-agro-accent-muted:    color-mix(in srgb, #3B82F6 15%, transparent);
+  --color-agro-danger-muted:    color-mix(in srgb, #EF4444 15%, transparent);
+
+  /* ── Dark-mode surface stack ─────────────────────────────────── */
+  --color-surface:   #0f172a;
   --color-surface-2: #1e293b;
   --color-surface-3: #334155;
-  --color-border: #334155;
-  --color-text-primary: #f1f5f9;
+  --color-border:    #334155;
+  --color-text-primary:   #f1f5f9;
   --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
+  --color-text-muted:     #64748b;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface-2); }
+::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }

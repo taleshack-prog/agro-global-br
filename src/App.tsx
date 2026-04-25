@@ -11,6 +11,8 @@ import { FinanceiroCredito } from './components/modules/FinanceiroCredito';
 import { LogisticaInteligente } from './components/modules/LogisticaInteligente';
 import { ESGRastreabilidade } from './components/modules/ESGRastreabilidade';
 
+// Each module's icon color and active background uses the design tokens:
+// accent (#3B82F6), secondary (#F59E0B), primary (#10B981), danger (#EF4444)
 const modules = [
   {
     id: 'dashboard',
@@ -18,8 +20,8 @@ const modules = [
     sublabel: 'Painel de Controle',
     icon: LayoutDashboard,
     badge: null,
-    color: 'text-blue-400',
-    bgActive: 'bg-blue-900/30 border-blue-700/50',
+    color: 'text-[#3B82F6]',        // agro-accent
+    bgActive: 'bg-[#3B82F6]/10 border-[#3B82F6]/40',
   },
   {
     id: 'risco',
@@ -27,8 +29,8 @@ const modules = [
     sublabel: 'Recomendador de Hedge',
     icon: Shield,
     badge: '!',
-    color: 'text-yellow-400',
-    bgActive: 'bg-yellow-900/30 border-yellow-700/50',
+    color: 'text-[#F59E0B]',        // agro-secondary
+    bgActive: 'bg-[#F59E0B]/10 border-[#F59E0B]/40',
   },
   {
     id: 'negociacao',
@@ -36,8 +38,8 @@ const modules = [
     sublabel: 'Marketplace / Corretora',
     icon: Store,
     badge: '5',
-    color: 'text-green-400',
-    bgActive: 'bg-green-900/30 border-green-700/50',
+    color: 'text-[#10B981]',        // agro-primary
+    bgActive: 'bg-[#10B981]/10 border-[#10B981]/40',
   },
   {
     id: 'financeiro',
@@ -54,8 +56,8 @@ const modules = [
     sublabel: 'Frete & Netback',
     icon: Truck,
     badge: null,
-    color: 'text-orange-400',
-    bgActive: 'bg-orange-900/30 border-orange-700/50',
+    color: 'text-[#F59E0B]',        // agro-secondary
+    bgActive: 'bg-[#F59E0B]/10 border-[#F59E0B]/40',
   },
   {
     id: 'esg',
@@ -63,8 +65,8 @@ const modules = [
     sublabel: 'Rastreabilidade',
     icon: Leaf,
     badge: null,
-    color: 'text-emerald-400',
-    bgActive: 'bg-emerald-900/30 border-emerald-700/50',
+    color: 'text-[#10B981]',        // agro-primary
+    bgActive: 'bg-[#10B981]/10 border-[#10B981]/40',
   },
 ];
 
@@ -96,7 +98,7 @@ export default function App() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 py-5 border-b border-[#334155]">
-          <div className="w-9 h-9 bg-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-900/50">
+          <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center shadow-lg shadow-[#10B981]/30">
             <TrendingUp size={20} className="text-white" />
           </div>
           <div>
@@ -117,8 +119,8 @@ export default function App() {
           <div className="text-sm font-semibold text-[#f1f5f9]">Faz. Santa Maria</div>
           <div className="text-xs text-[#94a3b8]">Sorriso, MT · 800 ha</div>
           <div className="flex items-center gap-1.5 mt-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs text-green-400">Dados em tempo real</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+            <span className="text-xs text-[#10B981]">Dados em tempo real</span>
           </div>
         </div>
 
@@ -150,7 +152,7 @@ export default function App() {
                   <div className="text-xs text-[#64748b] truncate">{mod.sublabel}</div>
                 </div>
                 {mod.badge && (
-                  <span className="bg-red-600 text-white text-xs rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold">
+                  <span className="bg-[#EF4444] text-white text-xs rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold">
                     {mod.badge}
                   </span>
                 )}
