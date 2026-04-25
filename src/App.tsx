@@ -110,18 +110,21 @@ const NAV_ITEMS: SidebarItem[] = [
   },
 ];
 
-const MODULE_COMPONENTS: Record<string, React.ReactNode> = {
-  dashboard: <DashboardMercado />,
-  risco:     <GestaoRisco />,
-  negociacao: <MesaNegociacao />,
-  financeiro: <FinanceiroCredito />,
-  logistica:  <LogisticaInteligente />,
-  esg:        <ESGRastreabilidade />,
-  'hedge-sistema': <HedgeDashboard />,
-  precos: <PricesDashboard />,
-  commodities: null, // rendered separately via CommoditiesRouter
-  componentes: <ComponentsShowcase />,
-};
+function renderModule(id: string, onNavigate: (m: string) => void): React.ReactNode {
+  switch (id) {
+    case 'dashboard':     return <DashboardMercado />;
+    case 'risco':         return <GestaoRisco />;
+    case 'negociacao':    return <MesaNegociacao />;
+    case 'financeiro':    return <FinanceiroCredito />;
+    case 'logistica':     return <LogisticaInteligente />;
+    case 'esg':           return <ESGRastreabilidade />;
+    case 'hedge-sistema': return <HedgeDashboard />;
+    case 'precos':        return <PricesDashboard />;
+    case 'commodities':   return <CommoditiesRouter onExternalNavigate={onNavigate} />;
+    case 'componentes':   return <ComponentsShowcase />;
+    default:              return <DashboardMercado />;
+  }
+}
 
 // ─── App ─────────────────────────────────────────────────────────────────────
 
@@ -238,11 +241,8 @@ export default function App() {
         </header>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto p-6">
-          {activeModule === 'commodities'
-            ? <CommoditiesRouter onExternalNavigate={handleModuleSelect} />
-            : MODULE_COMPONENTS[activeModule]
-          }
+        <main className="flex-1 overflow-y-auto p-6" key={activeModule}>
+          {renderModule(activeModule, handleModuleSelect)}
         </main>
       </div>
     </div>
