@@ -1,7 +1,8 @@
-import { TrendingUp, TrendingDown, CloudRain, AlertTriangle, Info, Zap, RefreshCw, Wifi, WifiOff } from 'lucide-react';
+import { TrendingUp, TrendingDown, CloudRain, Zap, RefreshCw, Wifi, WifiOff } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, CardHeader } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { Alert } from '../ui/Alert';
 import { StatCard } from '../ui/StatCard';
 import { cotacoes as mockCotacoes, macroIndicadores as mockMacro, alertasClima, precoHistorico } from '../../data/mockData';
 import { useMarketWebSocket } from '../../hooks/useMarketWebSocket';
@@ -210,30 +211,14 @@ export const DashboardMercado = () => {
         />
         <div className="space-y-3">
           {alertasClima.map((alerta, i) => {
-            const isWarning = alerta.tipo === 'warning';
-            const isDanger = alerta.tipo === 'danger';
+            const variant =
+              alerta.tipo === 'danger'  ? 'danger' :
+              alerta.tipo === 'warning' ? 'warning' : 'info';
             return (
-              <div
-                key={i}
-                className={`flex items-start gap-3 p-3 rounded-[12px] border ${
-                  isDanger ? 'bg-[#7F1D1D]/20 border-[#991B1B]/40' :
-                  isWarning ? 'bg-[#78350F]/20 border-[#92400E]/40' :
-                  'bg-[#1E3A8A]/20 border-[#1E40AF]/40'
-                }`}
-              >
-                <div className={`mt-0.5 ${isDanger ? 'text-agro-danger' : isWarning ? 'text-agro-secondary' : 'text-agro-accent'}`}>
-                  {isDanger ? <AlertTriangle size={16} /> : isWarning ? <AlertTriangle size={16} /> : <Info size={16} />}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-semibold text-text-primary">{alerta.regiao}</span>
-                    <Badge variant={isDanger ? 'red' : isWarning ? 'yellow' : 'blue'}>
-                      {alerta.severidade}
-                    </Badge>
-                  </div>
-                  <p className="text-xs text-text-secondary mt-0.5">{alerta.mensagem}</p>
-                </div>
-              </div>
+              <Alert key={i} variant={variant} title={alerta.regiao}>
+                <span className="text-xs">{alerta.mensagem}</span>
+                <Badge variant={variant} size="sm" className="ml-2">{alerta.severidade}</Badge>
+              </Alert>
             );
           })}
         </div>
