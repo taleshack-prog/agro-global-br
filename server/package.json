@@ -1,0 +1,47 @@
+{
+  "name": "agro-global-server",
+  "version": "1.0.0",
+  "description": "AgroGlobal B2B SuperApp — Backend API",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:migrate": "tsx src/db/migrate.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "cors": "^2.8.5",
+    "helmet": "^8.0.0",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "pg": "^8.14.1",
+    "ws": "^8.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^3.0.2",
+    "stripe": "^17.7.0",
+    "zod": "^3.24.3",
+    "axios": "^1.8.4",
+    "node-cron": "^3.0.3",
+    "winston": "^3.17.0",
+    "compression": "^1.8.0",
+    "express-async-errors": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/cors": "^2.8.17",
+    "@types/pg": "^8.11.11",
+    "@types/ws": "^8.5.14",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.15.3",
+    "@types/node-cron": "^3.0.11",
+    "@types/compression": "^1.7.5",
+    "typescript": "^5.8.3",
+    "tsx": "^4.19.3",
+    "drizzle-kit": "^0.31.1"
+  }
+}
