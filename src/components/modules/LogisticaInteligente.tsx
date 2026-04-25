@@ -44,7 +44,7 @@ export const LogisticaInteligente = () => {
             <select
               value={origemSelecionada}
               onChange={e => setOrigemSelecionada(e.target.value)}
-              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-md text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
+              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-[8px] text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
             >
               {origens.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
@@ -54,7 +54,7 @@ export const LogisticaInteligente = () => {
             <select
               value={produto}
               onChange={e => setProduto(e.target.value)}
-              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-md text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
+              className="w-full px-4 py-2 bg-[#0f172a] border border-[#334155] rounded-[8px] text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 cursor-pointer"
             >
               {produtos.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
@@ -95,7 +95,7 @@ export const LogisticaInteligente = () => {
                   </div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-lg ${isBest ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-[#0f172a] text-[#64748b]'}`}>
+                  <div className={`p-3 rounded-[12px] ${isBest ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-[#0f172a] text-[#64748b]'}`}>
                     <Truck size={22} />
                   </div>
                   <div className="flex-1">
@@ -162,7 +162,7 @@ export const LogisticaInteligente = () => {
               <div className="text-xs text-[#64748b] text-right mt-0.5">por saca · ex-fazenda</div>
             </div>
 
-            <div className="mt-4 bg-[#0f172a] rounded-lg p-3">
+            <div className="mt-4 bg-[#0f172a] rounded-[12px] p-3">
               <div className="text-xs text-[#64748b] mb-1">Para {volume.toLocaleString('pt-BR')} sacas</div>
               <div className="text-xl font-bold text-[#10B981]">
                 R$ {(netbackCalculo.precoLiquido * volume).toLocaleString('pt-BR')}

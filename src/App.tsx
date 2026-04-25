@@ -98,7 +98,7 @@ export default function App() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 py-5 border-b border-[#334155]">
-          <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center shadow-lg shadow-[#10B981]/30">
+          <div className="w-9 h-9 bg-[#10B981] rounded-[12px] flex items-center justify-center shadow-lg shadow-[#10B981]/30">
             <TrendingUp size={20} className="text-white" />
           </div>
           <div>
@@ -114,12 +114,12 @@ export default function App() {
         </div>
 
         {/* Fazenda Info */}
-        <div className="mx-4 my-3 p-3 bg-[#1e293b] rounded-xl border border-[#334155]">
+        <div className="mx-4 my-3 p-3 bg-[#1e293b] rounded-[12px] border border-[#334155]">
           <div className="text-xs text-[#64748b] mb-0.5">Fazenda Selecionada</div>
           <div className="text-sm font-semibold text-[#f1f5f9]">Faz. Santa Maria</div>
           <div className="text-xs text-[#94a3b8]">Sorriso, MT · 800 ha</div>
           <div className="flex items-center gap-1.5 mt-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-[9999px] bg-[#10B981] animate-pulse" />
             <span className="text-xs text-[#10B981]">Dados em tempo real</span>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function App() {
                   setSidebarOpen(false);
                 }}
                 className={`
-                  w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-150
+                  w-full flex items-center gap-3 px-3 py-3 rounded-[12px] text-left transition-all duration-150
                   ${isActive
                     ? `${mod.bgActive} border ${mod.color}`
                     : 'hover:bg-[#1e293b] text-[#94a3b8] border border-transparent hover:text-[#f1f5f9]'
@@ -152,7 +152,7 @@ export default function App() {
                   <div className="text-xs text-[#64748b] truncate">{mod.sublabel}</div>
                 </div>
                 {mod.badge && (
-                  <span className="bg-[#EF4444] text-white text-xs rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold">
+                  <span className="bg-[#EF4444] text-white text-xs rounded-[9999px] min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold">
                     {mod.badge}
                   </span>
                 )}
@@ -164,12 +164,12 @@ export default function App() {
 
         {/* Bottom */}
         <div className="p-4 border-t border-[#334155] space-y-2">
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#1e293b] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
+          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-[12px] hover:bg-[#1e293b] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
             <Settings size={16} />
             <span className="text-sm">Configurações</span>
           </button>
           <div className="flex items-center gap-3 px-3 py-2.5">
-            <div className="w-7 h-7 bg-green-700 rounded-full flex items-center justify-center">
+            <div className="w-7 h-7 bg-green-700 rounded-[9999px] flex items-center justify-center">
               <User size={14} className="text-white" />
             </div>
             <div className="flex-1 min-w-0">
@@ -209,15 +209,15 @@ export default function App() {
 
           <div className="flex items-center gap-3">
             {/* Safra selector */}
-            <select className="hidden sm:block bg-[#1e293b] border border-[#334155] rounded-lg px-3 py-1.5 text-xs text-[#f1f5f9] cursor-pointer focus:outline-none focus:border-green-600">
+            <select className="hidden sm:block bg-[#1e293b] border border-[#334155] rounded-[12px] px-3 py-1.5 text-xs text-[#f1f5f9] cursor-pointer focus:outline-none focus:border-green-600">
               <option>Safra 2025/26</option>
               <option>Safra 2026/27</option>
             </select>
 
             {/* Notifications */}
-            <button className="relative p-2 rounded-lg bg-[#1e293b] border border-[#334155] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
+            <button className="relative p-2 rounded-[12px] bg-[#1e293b] border border-[#334155] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
               <Bell size={16} />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold">3</span>
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-[9999px] flex items-center justify-center font-bold">3</span>
             </button>
           </div>
         </header>

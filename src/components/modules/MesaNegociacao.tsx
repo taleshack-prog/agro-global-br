@@ -35,12 +35,12 @@ export const MesaNegociacao = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-[#1e293b] rounded-xl p-1 border border-[#334155]">
+      <div className="flex gap-1 bg-[#1e293b] rounded-[12px] p-1 border border-[#334155]">
         {(['ofertas', 'rfq', 'contratos'] as const).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-150 ${
+            className={`flex-1 py-2 px-4 rounded-[12px] text-sm font-medium transition-all duration-150 ${
               tab === t ? 'bg-[#047857] text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
             }`}
           >
@@ -53,15 +53,15 @@ export const MesaNegociacao = () => {
         <div className="space-y-4">
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
+            <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-4 text-center">
               <div className="text-2xl font-bold text-[#10B981]">{ofertasCompra.length}</div>
               <div className="text-xs text-[#64748b]">Ofertas Ativas</div>
             </div>
-            <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
+            <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-4 text-center">
               <div className="text-2xl font-bold text-[#f1f5f9]">{ofertasCompra.reduce((a, b) => a + b.volume, 0).toLocaleString('pt-BR')}</div>
               <div className="text-xs text-[#64748b]">Volume Total (sc)</div>
             </div>
-            <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 text-center">
+            <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-4 text-center">
               <div className="text-2xl font-bold text-[#F59E0B]">R$ 142.80</div>
               <div className="text-xs text-[#64748b]">Preço Médio Soja</div>
             </div>
@@ -130,7 +130,7 @@ export const MesaNegociacao = () => {
             />
             <div className="space-y-4">
               {leilaoData.map((l, i) => (
-                <div key={i} className={`border rounded-xl p-4 ${l.status === 'Ativo' ? 'border-[#047857]/50 bg-[#064E3B]/10' : 'border-[#334155] bg-[#0f172a]/40'}`}>
+                <div key={i} className={`border rounded-[12px] p-4 ${l.status === 'Ativo' ? 'border-[#047857]/50 bg-[#064E3B]/10' : 'border-[#334155] bg-[#0f172a]/40'}`}>
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <div className="flex items-center gap-2">

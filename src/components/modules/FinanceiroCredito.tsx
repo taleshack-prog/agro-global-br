@@ -29,7 +29,7 @@ export const FinanceiroCredito = () => {
 
       {/* Score e Limite */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-br from-[#1E3A8A]/40 to-[#1E3A8A]/10 border border-[#1D4ED8]/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#1E3A8A]/40 to-[#1E3A8A]/10 border border-[#1D4ED8]/40 rounded-[12px] p-5">
           <div className="flex items-center gap-2 mb-3">
             <Shield size={18} className="text-[#3B82F6]" />
             <span className="text-sm text-[#94a3b8] font-medium">Score de Crédito</span>
@@ -39,7 +39,7 @@ export const FinanceiroCredito = () => {
           <ProgressBar value={782} max={1000} color="blue" />
         </div>
 
-        <div className="bg-gradient-to-br from-[#064E3B]/40 to-green-900/10 border border-[#047857]/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#064E3B]/40 to-green-900/10 border border-[#047857]/40 rounded-[12px] p-5">
           <div className="flex items-center gap-2 mb-3">
             <CreditCard size={18} className="text-[#10B981]" />
             <span className="text-sm text-[#94a3b8] font-medium">Limite de Crédito</span>
@@ -49,7 +49,7 @@ export const FinanceiroCredito = () => {
           <ProgressBar value={limiteCreditoUsado} max={limiteCreditoTotal} color="green" />
         </div>
 
-        <div className="bg-gradient-to-br from-[#78350F]/40 to-yellow-900/10 border border-[#B45309]/40 rounded-xl p-5">
+        <div className="bg-gradient-to-br from-[#78350F]/40 to-yellow-900/10 border border-[#B45309]/40 rounded-[12px] p-5">
           <div className="flex items-center gap-2 mb-3">
             <Coins size={18} className="text-[#F59E0B]" />
             <span className="text-sm text-[#94a3b8] font-medium">Lastro Disponível</span>
@@ -61,12 +61,12 @@ export const FinanceiroCredito = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-[#1e293b] rounded-xl p-1 border border-[#334155]">
+      <div className="flex gap-1 bg-[#1e293b] rounded-[12px] p-1 border border-[#334155]">
         {(['credito', 'cpr', 'seguros'] as const).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-150 ${
+            className={`flex-1 py-2 px-4 rounded-[12px] text-sm font-medium transition-all duration-150 ${
               tab === t ? 'bg-[#047857] text-white shadow' : 'text-[#94a3b8] hover:text-[#f1f5f9]'
             }`}
           >
@@ -81,7 +81,7 @@ export const FinanceiroCredito = () => {
             <Card key={i}>
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="p-3 bg-[#0f172a] rounded-lg text-[#10B981]">
+                  <div className="p-3 bg-[#0f172a] rounded-[12px] text-[#10B981]">
                     <CreditCard size={22} />
                   </div>
                   <div className="flex-1">
@@ -133,7 +133,7 @@ export const FinanceiroCredito = () => {
             <Card key={i}>
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className={`p-3 rounded-lg ${cpr.status === 'Ativa' ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-slate-700/40 text-slate-400'}`}>
+                  <div className={`p-3 rounded-[12px] ${cpr.status === 'Ativa' ? 'bg-[#064E3B]/40 text-[#10B981]' : 'bg-slate-700/40 text-slate-400'}`}>
                     <FileSignature size={22} />
                   </div>
                   <div className="flex-1">
@@ -171,7 +171,7 @@ export const FinanceiroCredito = () => {
               </div>
             </Card>
           ))}
-          <div className="bg-purple-900/20 border border-purple-700/40 rounded-xl p-4">
+          <div className="bg-purple-900/20 border border-purple-700/40 rounded-[12px] p-4">
             <div className="flex items-center gap-2 mb-2">
               <Coins size={16} className="text-purple-400" />
               <span className="text-sm font-semibold text-purple-300">Mercado Secundário de CPRs</span>
@@ -185,7 +185,7 @@ export const FinanceiroCredito = () => {
 
       {tab === 'seguros' && (
         <div className="space-y-4">
-          <div className="bg-[#1E3A8A]/20 border border-[#1D4ED8]/40 rounded-xl p-4 mb-4">
+          <div className="bg-[#1E3A8A]/20 border border-[#1D4ED8]/40 rounded-[12px] p-4 mb-4">
             <p className="text-xs text-[#94a3b8]">
               <span className="text-[#93C5FD] font-semibold">Seguros Paramétricos</span> são acionados automaticamente quando gatilhos climáticos ou produtivos são alcançados, com base em dados de sensores e estações meteorológicas. Sem necessidade de perícia presencial.
             </p>
@@ -194,7 +194,7 @@ export const FinanceiroCredito = () => {
             <Card key={i}>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="p-3 bg-[#0f172a] rounded-lg text-[#3B82F6]">
+                  <div className="p-3 bg-[#0f172a] rounded-[12px] text-[#3B82F6]">
                     <Shield size={22} />
                   </div>
                   <div>
