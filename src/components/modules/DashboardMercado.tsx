@@ -9,8 +9,8 @@ import { useMarketWebSocket } from '../../hooks/useMarketWebSocket';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-[12px] p-3 shadow-xl">
-        <p className="text-xs text-[#94a3b8] mb-2">{label}</p>
+      <div className="bg-surface-2 border border-border rounded-[12px] p-3 shadow-xl">
+        <p className="text-xs text-text-secondary mb-2">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-xs font-semibold" style={{ color: p.color }}>
             {p.name}: R$ {p.value.toFixed(2)}/sc
@@ -53,19 +53,19 @@ export const DashboardMercado = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-[#f1f5f9]">Dashboard de Mercado</h2>
-          <p className="text-sm text-[#64748b] mt-0.5">
+          <h2 className="text-xl font-bold text-text-primary">Dashboard de Mercado</h2>
+          <p className="text-sm text-text-muted mt-0.5">
           {lastUpdated
             ? `Atualizado às ${lastUpdated.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`
             : 'Carregando dados...'}
         </p>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-[12px] border ${connected ? 'bg-[#064E3B]/30 border-[#047857]/50 text-[#10B981]' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
+          <div className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-[12px] border ${connected ? 'bg-[#064E3B]/30 border-[#047857]/50 text-agro-primary' : 'bg-slate-800 border-slate-600 text-slate-400'}`}>
             {connected ? <Wifi size={12} /> : <WifiOff size={12} />}
             {connected ? 'Ao vivo' : 'Offline'}
           </div>
-          <button className="flex items-center gap-2 text-xs text-[#94a3b8] hover:text-[#f1f5f9] bg-[#1e293b] border border-[#334155] px-3 py-2 rounded-[12px] transition-colors">
+          <button className="flex items-center gap-2 text-xs text-text-secondary hover:text-text-primary bg-surface-2 border border-border px-3 py-2 rounded-[12px] transition-colors">
             <RefreshCw size={13} />
             Atualizar
           </button>
@@ -74,7 +74,7 @@ export const DashboardMercado = () => {
 
       {/* Indicadores Macro */}
       <div>
-        <h3 className="text-xs font-semibold text-[#64748b] uppercase tracking-wider mb-3">Indicadores Macro</h3>
+        <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">Indicadores Macro</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {macroIndicadores.map((ind) => (
             <StatCard
@@ -98,7 +98,7 @@ export const DashboardMercado = () => {
           action={
             <div className="flex gap-2">
               {['Soja', 'Milho', 'Trigo'].map(c => (
-                <button key={c} className="text-xs text-[#94a3b8] hover:text-[#f1f5f9] px-2 py-1 rounded bg-[#0f172a] border border-[#334155] transition-colors">
+                <button key={c} className="text-xs text-text-secondary hover:text-text-primary px-2 py-1 rounded bg-surface border border-border transition-colors">
                   {c}
                 </button>
               ))}
@@ -132,23 +132,23 @@ export const DashboardMercado = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-[#334155]">
-                  <th className="text-left text-xs text-[#64748b] font-medium px-5 py-3">Praça</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-4 py-3">Preço</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-4 py-3">Basis</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-5 py-3">Variação</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-xs text-text-muted font-medium px-5 py-3">Praça</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-4 py-3">Preço</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-4 py-3">Basis</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-5 py-3">Variação</th>
                 </tr>
               </thead>
               <tbody>
                 {soja.map((row, i) => (
-                  <tr key={i} className="border-b border-[#334155]/50 hover:bg-[#0f172a]/40 transition-colors">
-                    <td className="px-5 py-3 text-[#f1f5f9] font-medium">{row.praça}</td>
-                    <td className="px-4 py-3 text-right text-[#f1f5f9] font-mono">R$ {row.preco.toFixed(2)}</td>
-                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                  <tr key={i} className="border-b border-border/50 hover:bg-surface/40 transition-colors">
+                    <td className="px-5 py-3 text-text-primary font-medium">{row.praça}</td>
+                    <td className="px-4 py-3 text-right text-text-primary font-mono">R$ {row.preco.toFixed(2)}</td>
+                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-agro-primary' : 'text-agro-danger'}`}>
                       {row.basis >= 0 ? '+' : ''}{row.basis.toFixed(2)}
                     </td>
                     <td className="px-5 py-3 text-right">
-                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-agro-primary' : 'text-agro-danger'}`}>
                         {row.variacao >= 0 ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
                         {row.variacao >= 0 ? '+' : ''}{row.variacao.toFixed(1)}%
                       </span>
@@ -172,23 +172,23 @@ export const DashboardMercado = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-[#334155]">
-                  <th className="text-left text-xs text-[#64748b] font-medium px-5 py-3">Praça</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-4 py-3">Preço</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-4 py-3">Basis</th>
-                  <th className="text-right text-xs text-[#64748b] font-medium px-5 py-3">Variação</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-xs text-text-muted font-medium px-5 py-3">Praça</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-4 py-3">Preço</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-4 py-3">Basis</th>
+                  <th className="text-right text-xs text-text-muted font-medium px-5 py-3">Variação</th>
                 </tr>
               </thead>
               <tbody>
                 {milho.map((row, i) => (
-                  <tr key={i} className="border-b border-[#334155]/50 hover:bg-[#0f172a]/40 transition-colors">
-                    <td className="px-5 py-3 text-[#f1f5f9] font-medium">{row.praça}</td>
-                    <td className="px-4 py-3 text-right text-[#f1f5f9] font-mono">R$ {row.preco.toFixed(2)}</td>
-                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                  <tr key={i} className="border-b border-border/50 hover:bg-surface/40 transition-colors">
+                    <td className="px-5 py-3 text-text-primary font-medium">{row.praça}</td>
+                    <td className="px-4 py-3 text-right text-text-primary font-mono">R$ {row.preco.toFixed(2)}</td>
+                    <td className={`px-4 py-3 text-right font-mono ${row.basis >= 0 ? 'text-agro-primary' : 'text-agro-danger'}`}>
                       {row.basis >= 0 ? '+' : ''}{row.basis.toFixed(2)}
                     </td>
                     <td className="px-5 py-3 text-right">
-                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                      <span className={`inline-flex items-center gap-1 text-xs font-semibold ${row.variacao >= 0 ? 'text-agro-primary' : 'text-agro-danger'}`}>
                         {row.variacao >= 0 ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
                         {row.variacao >= 0 ? '+' : ''}{row.variacao.toFixed(1)}%
                       </span>
@@ -221,17 +221,17 @@ export const DashboardMercado = () => {
                   'bg-[#1E3A8A]/20 border-[#1E40AF]/40'
                 }`}
               >
-                <div className={`mt-0.5 ${isDanger ? 'text-[#EF4444]' : isWarning ? 'text-[#F59E0B]' : 'text-[#3B82F6]'}`}>
+                <div className={`mt-0.5 ${isDanger ? 'text-agro-danger' : isWarning ? 'text-agro-secondary' : 'text-agro-accent'}`}>
                   {isDanger ? <AlertTriangle size={16} /> : isWarning ? <AlertTriangle size={16} /> : <Info size={16} />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-semibold text-[#f1f5f9]">{alerta.regiao}</span>
+                    <span className="text-sm font-semibold text-text-primary">{alerta.regiao}</span>
                     <Badge variant={isDanger ? 'red' : isWarning ? 'yellow' : 'blue'}>
                       {alerta.severidade}
                     </Badge>
                   </div>
-                  <p className="text-xs text-[#94a3b8] mt-0.5">{alerta.mensagem}</p>
+                  <p className="text-xs text-text-secondary mt-0.5">{alerta.mensagem}</p>
                 </div>
               </div>
             );

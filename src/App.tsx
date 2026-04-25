@@ -86,27 +86,27 @@ export default function App() {
   const current = modules.find(m => m.id === activeModule)!;
 
   return (
-    <div className="flex h-screen bg-[#0f172a] overflow-hidden">
+    <div className="flex h-screen bg-surface overflow-hidden">
       {/* Sidebar */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-[#0f172a] border-r border-[#334155] flex flex-col
+          fixed inset-y-0 left-0 z-50 w-64 bg-surface border-r border-border flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:relative lg:translate-x-0 lg:flex
         `}
       >
         {/* Logo */}
-        <div className="flex items-center gap-3 px-5 py-5 border-b border-[#334155]">
+        <div className="flex items-center gap-3 px-5 py-5 border-b border-border">
           <div className="w-9 h-9 bg-[#10B981] rounded-[12px] flex items-center justify-center shadow-lg shadow-[#10B981]/30">
             <TrendingUp size={20} className="text-white" />
           </div>
           <div>
-            <div className="text-sm font-bold text-[#f1f5f9] leading-tight">AgroGlobal</div>
-            <div className="text-xs text-[#64748b]">SuperApp B2B</div>
+            <div className="text-sm font-bold text-text-primary leading-tight">AgroGlobal</div>
+            <div className="text-xs text-text-muted">SuperApp B2B</div>
           </div>
           <button
-            className="ml-auto lg:hidden text-[#64748b] hover:text-[#f1f5f9]"
+            className="ml-auto lg:hidden text-text-muted hover:text-text-primary"
             onClick={() => setSidebarOpen(false)}
           >
             <X size={18} />
@@ -114,10 +114,10 @@ export default function App() {
         </div>
 
         {/* Fazenda Info */}
-        <div className="mx-4 my-3 p-3 bg-[#1e293b] rounded-[12px] border border-[#334155]">
-          <div className="text-xs text-[#64748b] mb-0.5">Fazenda Selecionada</div>
-          <div className="text-sm font-semibold text-[#f1f5f9]">Faz. Santa Maria</div>
-          <div className="text-xs text-[#94a3b8]">Sorriso, MT · 800 ha</div>
+        <div className="mx-4 my-3 p-3 bg-surface-2 rounded-[12px] border border-border">
+          <div className="text-xs text-text-muted mb-0.5">Fazenda Selecionada</div>
+          <div className="text-sm font-semibold text-text-primary">Faz. Santa Maria</div>
+          <div className="text-xs text-text-secondary">Sorriso, MT · 800 ha</div>
           <div className="flex items-center gap-1.5 mt-2">
             <div className="w-1.5 h-1.5 rounded-[9999px] bg-[#10B981] animate-pulse" />
             <span className="text-xs text-[#10B981]">Dados em tempo real</span>
@@ -140,16 +140,16 @@ export default function App() {
                   w-full flex items-center gap-3 px-3 py-3 rounded-[12px] text-left transition-all duration-150
                   ${isActive
                     ? `${mod.bgActive} border ${mod.color}`
-                    : 'hover:bg-[#1e293b] text-[#94a3b8] border border-transparent hover:text-[#f1f5f9]'
+                    : 'hover:bg-surface-2 text-text-secondary border border-transparent hover:text-text-primary'
                   }
                 `}
               >
                 <Icon size={18} className={isActive ? mod.color : ''} />
                 <div className="flex-1 min-w-0">
-                  <div className={`text-sm font-medium leading-tight ${isActive ? 'text-[#f1f5f9]' : ''}`}>
+                  <div className={`text-sm font-medium leading-tight ${isActive ? 'text-text-primary' : ''}`}>
                     {mod.label}
                   </div>
-                  <div className="text-xs text-[#64748b] truncate">{mod.sublabel}</div>
+                  <div className="text-xs text-text-muted truncate">{mod.sublabel}</div>
                 </div>
                 {mod.badge && (
                   <span className="bg-[#EF4444] text-white text-xs rounded-[9999px] min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold">
@@ -163,8 +163,8 @@ export default function App() {
         </nav>
 
         {/* Bottom */}
-        <div className="p-4 border-t border-[#334155] space-y-2">
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-[12px] hover:bg-[#1e293b] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
+        <div className="p-4 border-t border-border space-y-2">
+          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-[12px] hover:bg-surface-2 text-text-secondary hover:text-text-primary transition-colors">
             <Settings size={16} />
             <span className="text-sm">Configurações</span>
           </button>
@@ -173,8 +173,8 @@ export default function App() {
               <User size={14} className="text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs font-semibold text-[#f1f5f9] truncate">João Silva</div>
-              <div className="text-xs text-[#64748b] truncate">Fazendeiro · Pro</div>
+              <div className="text-xs font-semibold text-text-primary truncate">João Silva</div>
+              <div className="text-xs text-text-muted truncate">Fazendeiro · Pro</div>
             </div>
           </div>
         </div>
@@ -191,9 +191,9 @@ export default function App() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Bar */}
-        <header className="flex items-center gap-4 px-6 py-4 bg-[#0f172a] border-b border-[#334155] shrink-0">
+        <header className="flex items-center gap-4 px-6 py-4 bg-surface border-b border-border shrink-0">
           <button
-            className="lg:hidden text-[#94a3b8] hover:text-[#f1f5f9]"
+            className="lg:hidden text-text-secondary hover:text-text-primary"
             onClick={() => setSidebarOpen(true)}
           >
             <Menu size={22} />
@@ -202,20 +202,20 @@ export default function App() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <current.icon size={16} className={current.color} />
-              <h1 className="text-base font-bold text-[#f1f5f9] truncate">{current.label}</h1>
+              <h1 className="text-base font-bold text-text-primary truncate">{current.label}</h1>
             </div>
-            <p className="text-xs text-[#64748b] truncate">{current.sublabel}</p>
+            <p className="text-xs text-text-muted truncate">{current.sublabel}</p>
           </div>
 
           <div className="flex items-center gap-3">
             {/* Safra selector */}
-            <select className="hidden sm:block bg-[#1e293b] border border-[#334155] rounded-[12px] px-3 py-1.5 text-xs text-[#f1f5f9] cursor-pointer focus:outline-none focus:border-green-600">
+            <select className="hidden sm:block bg-surface-2 border border-border rounded-[12px] px-3 py-1.5 text-xs text-text-primary cursor-pointer focus:outline-none focus:border-green-600">
               <option>Safra 2025/26</option>
               <option>Safra 2026/27</option>
             </select>
 
             {/* Notifications */}
-            <button className="relative p-2 rounded-[12px] bg-[#1e293b] border border-[#334155] text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
+            <button className="relative p-2 rounded-[12px] bg-surface-2 border border-border text-text-secondary hover:text-text-primary transition-colors">
               <Bell size={16} />
               <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-[9999px] flex items-center justify-center font-bold">3</span>
             </button>
