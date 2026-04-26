@@ -19,6 +19,9 @@ import { HedgeDashboard } from './pages/HedgeDashboard';
 import { DashboardExecutivo } from './pages/DashboardExecutivo';
 import { UserMenu } from './components/UserMenu';
 import { useCurrentUser } from './hooks/useCurrentUser';
+import { useFarms } from './hooks/useFarms';
+import { FarmSelector } from './components/FarmSelector';
+import { FarmOnboarding } from './components/FarmOnboarding';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -145,6 +148,9 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
   const user = useCurrentUser();
+  const { farms, selected: selectedFarm, isLoading: farmsLoading, isCreating, create: createFarm, select: selectFarm } = useFarms();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  if (!farmsLoading && farms.length === 0 && !showOnboarding) setShowOnboarding(true);
 
   const handleModuleSelect = (id: string) => {
     setActiveModule(id);
@@ -168,15 +174,12 @@ export default function App() {
 
   // Sidebar info slot (selected farm)
   const sidebarInfo = (
-    <div className="mx-4 mb-3 p-3 bg-surface-2 rounded-[12px] border border-border">
-      <div className="text-xs text-text-muted mb-0.5">Fazenda Selecionada</div>
-      <div className="text-sm font-semibold text-text-primary">Faz. Santa Maria</div>
-      <div className="text-xs text-text-secondary">Sorriso, MT · 800 ha</div>
-      <div className="flex items-center gap-1.5 mt-2">
-        <div className="w-1.5 h-1.5 rounded-[9999px] bg-agro-primary animate-pulse" />
-        <span className="text-xs text-agro-primary">Dados em tempo real</span>
-      </div>
-    </div>
+    <FarmSelector
+      farms={farms}
+      selected={selectedFarm}
+      onSelect={selectFarm}
+      onAddNew={() => setShowOnboarding(true)}
+    />
   );
 
   // Sidebar footer slot
@@ -255,6 +258,16 @@ export default function App() {
           {renderModule(activeModule, handleModuleSelect)}
         </main>
       </div>
+      {showOnboarding && (
+        <FarmOnboarding
+          onCreate={async (payload) => {
+            const farm = await createFarm(payload);
+            setShowOnboarding(false);
+            return farm;
+          }}
+          isCreating={isCreating}
+        />
+      )}
     </div>
   );
 }
