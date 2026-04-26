@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
-  Truck, Leaf, Bell, Settings, Menu, TrendingUp, User, Layers, Package
+  Truck, Leaf, Bell, Settings, Menu, TrendingUp, Layers, Package
 } from 'lucide-react';
 import { DashboardMercado } from './components/modules/DashboardMercado';
 import { GestaoRisco } from './components/modules/GestaoRisco';
@@ -17,6 +17,8 @@ import { CommoditiesRouter } from './pages/commodities/CommoditiesRouter';
 import { PricesDashboard } from './pages/PricesDashboard';
 import { HedgeDashboard } from './pages/HedgeDashboard';
 import { DashboardExecutivo } from './pages/DashboardExecutivo';
+import { UserMenu } from './components/UserMenu';
+import { useCurrentUser } from './hooks/useCurrentUser';
 
 // ─── Nav config ──────────────────────────────────────────────────────────────
 
@@ -142,6 +144,7 @@ export default function App() {
   const [activeModule, setActiveModule] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
+  const user = useCurrentUser();
 
   const handleModuleSelect = (id: string) => {
     setActiveModule(id);
@@ -186,15 +189,7 @@ export default function App() {
         <Settings size={16} />
         <span className="text-sm">Configurações</span>
       </button>
-      <div className="flex items-center gap-3 px-3 py-2.5">
-        <div className="w-7 h-7 bg-agro-primary rounded-[9999px] flex items-center justify-center">
-          <User size={14} className="text-white" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-xs font-semibold text-text-primary truncate">João Silva</div>
-          <div className="text-xs text-text-muted truncate">Fazendeiro · Pro</div>
-        </div>
-      </div>
+      <UserMenu />
     </div>
   );
 
@@ -247,6 +242,11 @@ export default function App() {
                 3
               </span>
             </button>
+            <div className="lg:hidden w-8 h-8 bg-agro-primary rounded-full flex items-center justify-center">
+              <span className="text-xs font-bold text-white">
+                {user.name.split(' ').slice(0,2).map((w: string) => w[0]).join('').toUpperCase()}
+              </span>
+            </div>
           </div>
         </header>
 
