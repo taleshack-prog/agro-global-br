@@ -12,19 +12,8 @@ export function AuthGate({ children }: Props) {
 
   if (!isHydrated) {
     return (
-      <div style={{
-        minHeight: '100vh', width: '100%',
-        backgroundColor: 'var(--color-surface)',
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center', gap: '16px',
-      }}>
-        <div style={{
-          width: '44px', height: '44px',
-          backgroundColor: 'var(--color-agro-primary)',
-          borderRadius: '14px',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          animation: 'pulse 2s infinite',
-        }}>
+      <div style={{ minHeight: '100vh', width: '100%', backgroundColor: 'var(--color-surface)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+        <div style={{ width: '44px', height: '44px', backgroundColor: 'var(--color-agro-primary)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <TrendingUp size={22} color="white" />
         </div>
         <p style={{ fontSize: '14px', color: 'var(--color-text-muted)' }}>Carregando...</p>
