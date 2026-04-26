@@ -21,68 +21,113 @@ export function LoginPage({ onSwitchToRegister }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-11 h-11 bg-agro-primary rounded-[14px] flex items-center justify-center shadow-[var(--shadow-primary)]">
-            <TrendingUp size={22} className="text-white" />
+    <div style={{
+      minHeight: '100vh',
+      width: '100%',
+      backgroundColor: 'var(--color-surface)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1rem',
+    }}>
+      <div style={{ width: '100%', maxWidth: '420px' }}>
+
+        {/* Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '32px' }}>
+          <div style={{
+            width: '44px', height: '44px',
+            backgroundColor: 'var(--color-agro-primary)',
+            borderRadius: '14px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: 'var(--shadow-primary)',
+          }}>
+            <TrendingUp size={22} color="white" />
           </div>
           <div>
-            <div className="text-xl font-bold text-text-primary leading-tight">AgroGlobal</div>
-            <div className="text-xs text-text-muted">SuperApp B2B Agro</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1.2 }}>AgroGlobal</div>
+            <div style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>SuperApp B2B Agro</div>
           </div>
         </div>
 
-        <div className="bg-surface-2 border border-border rounded-[16px] p-8 shadow-[var(--shadow-xl)]">
-          <h1 className="text-lg font-bold text-text-primary mb-1">Entrar na plataforma</h1>
-          <p className="text-sm text-text-muted mb-6">
+        {/* Card */}
+        <div style={{
+          backgroundColor: 'var(--color-surface-2)',
+          border: '1px solid var(--color-border)',
+          borderRadius: '16px',
+          padding: '32px',
+          boxShadow: 'var(--shadow-xl)',
+        }}>
+          <h1 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '4px' }}>
+            Entrar na plataforma
+          </h1>
+          <p style={{ fontSize: '14px', color: 'var(--color-text-muted)', marginBottom: '24px' }}>
             Não tem conta?{' '}
-            <button type="button" onClick={onSwitchToRegister} className="text-agro-primary hover:underline font-semibold">
+            <button type="button" onClick={onSwitchToRegister}
+              style={{ color: 'var(--color-agro-primary)', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
               Criar conta grátis
             </button>
           </p>
 
           {error && (
-            <div className="flex items-center gap-2 bg-agro-danger/10 border border-agro-danger/30 rounded-[8px] px-4 py-3 mb-5">
-              <AlertCircle size={16} className="text-agro-danger shrink-0" />
-              <p className="text-sm text-agro-danger">{error}</p>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: '8px',
+              backgroundColor: 'rgba(239,68,68,0.1)',
+              border: '1px solid rgba(239,68,68,0.3)',
+              borderRadius: '8px', padding: '12px 16px', marginBottom: '20px',
+            }}>
+              <AlertCircle size={16} color="var(--color-agro-danger)" style={{ flexShrink: 0 }} />
+              <p style={{ fontSize: '14px', color: 'var(--color-agro-danger)', margin: 0 }}>{error}</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input label="E-mail" type="email" placeholder="voce@fazenda.com.br"
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Input
+              label="E-mail" type="email" placeholder="voce@fazenda.com.br"
               value={email} onChange={e => setEmail(e.target.value)}
-              icon={<Mail size={16} />} required autoComplete="email" disabled={isLoading} />
-            <Input label="Senha" type="password" placeholder="Mínimo 8 caracteres"
+              icon={<Mail size={16} />} required autoComplete="email" disabled={isLoading}
+            />
+            <Input
+              label="Senha" type="password" placeholder="Mínimo 8 caracteres"
               value={password} onChange={e => setPassword(e.target.value)}
-              icon={<Lock size={16} />} required autoComplete="current-password" disabled={isLoading} />
+              icon={<Lock size={16} />} required autoComplete="current-password" disabled={isLoading}
+            />
 
-            <div className="flex items-center justify-between pt-1">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" className="accent-agro-primary" />
-                <span className="text-xs text-text-muted">Lembrar de mim</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input type="checkbox" style={{ accentColor: 'var(--color-agro-primary)' }} />
+                <span style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>Lembrar de mim</span>
               </label>
-              <button type="button" className="text-xs text-agro-accent hover:underline">Esqueci a senha</button>
+              <button type="button" style={{ fontSize: '12px', color: 'var(--color-agro-accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
+                Esqueci a senha
+              </button>
             </div>
 
-            <Button type="submit" fullWidth isLoading={isLoading} size="md" className="mt-2">Entrar</Button>
+            <Button type="submit" fullWidth isLoading={isLoading} size="md">
+              Entrar
+            </Button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-border">
-            <p className="text-xs text-text-muted text-center mb-3">Acesso demonstração</p>
+          <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--color-border)' }}>
+            <p style={{ fontSize: '12px', color: 'var(--color-text-muted)', textAlign: 'center', marginBottom: '12px' }}>
+              Acesso demonstração
+            </p>
             <button type="button"
               onClick={() => { setEmail('demo@agroglobal.com.br'); setPassword('demo1234'); }}
-              className="w-full text-xs text-text-secondary border border-border rounded-[8px] py-2 hover:bg-surface transition-colors">
+              style={{
+                width: '100%', fontSize: '12px', color: 'var(--color-text-secondary)',
+                border: '1px solid var(--color-border)', borderRadius: '8px',
+                padding: '8px', background: 'none', cursor: 'pointer',
+              }}>
               Preencher com credenciais demo
             </button>
           </div>
         </div>
 
-        <p className="text-xs text-text-muted text-center mt-6">
+        <p style={{ fontSize: '12px', color: 'var(--color-text-muted)', textAlign: 'center', marginTop: '24px' }}>
           Ao entrar, você concorda com os{' '}
-          <span className="text-agro-primary cursor-pointer hover:underline">Termos de Uso</span>
+          <span style={{ color: 'var(--color-agro-primary)', cursor: 'pointer' }}>Termos de Uso</span>
           {' '}e{' '}
-          <span className="text-agro-primary cursor-pointer hover:underline">Política de Privacidade</span>.
+          <span style={{ color: 'var(--color-agro-primary)', cursor: 'pointer' }}>Política de Privacidade</span>.
         </p>
       </div>
     </div>

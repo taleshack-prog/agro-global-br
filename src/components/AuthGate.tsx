@@ -12,11 +12,22 @@ export function AuthGate({ children }: Props) {
 
   if (!isHydrated) {
     return (
-      <div className="min-h-screen bg-surface flex flex-col items-center justify-center gap-4">
-        <div className="w-11 h-11 bg-agro-primary rounded-[14px] flex items-center justify-center shadow-[var(--shadow-primary)] animate-pulse">
-          <TrendingUp size={22} className="text-white" />
+      <div style={{
+        minHeight: '100vh', width: '100%',
+        backgroundColor: 'var(--color-surface)',
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', gap: '16px',
+      }}>
+        <div style={{
+          width: '44px', height: '44px',
+          backgroundColor: 'var(--color-agro-primary)',
+          borderRadius: '14px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          animation: 'pulse 2s infinite',
+        }}>
+          <TrendingUp size={22} color="white" />
         </div>
-        <p className="text-sm text-text-muted">Carregando...</p>
+        <p style={{ fontSize: '14px', color: 'var(--color-text-muted)' }}>Carregando...</p>
       </div>
     );
   }
