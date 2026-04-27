@@ -141,7 +141,7 @@ class PriceServer:
         self.subscriptions: Dict[str, Set] = {k: set() for k in COMMODITY_FEEDS}
         self.all_subscribers: Set = set()
 
-    async def handle(self, ws: WebSocketServerProtocol, path: str):
+    async def handle(self, ws):
         self.all_subscribers.add(ws)
         logger.info(f"Client connected — total: {len(self.all_subscribers)}")
         try:
