@@ -55,9 +55,13 @@ function NewOfferModal({ onClose, onCreate }: { onClose: () => void; onCreate: (
     setLoading(true);
     try {
       const offer = await offersApi.create({
-        product, volumeSacas: parseFloat(volumeSacas), pricePerSaca: parseFloat(pricePerSaca),
-        origem: origem||undefined, destino: destino||undefined,
-        deadline: deadline||undefined, notes: notes||undefined,
+        product: product.toLowerCase().replace(' ', '') as any,
+        volumeSacas: parseFloat(volumeSacas),
+        pricePerSaca: parseFloat(pricePerSaca),
+        origem:  origem   || undefined,
+        destino: destino  || undefined,
+        deadline: deadline ? new Date(deadline + 'T23:59:59Z').toISOString() : undefined,
+        notes:   notes    || undefined,
       });
       onCreate(offer); onClose();
     } catch (err: any) { setError(err.message ?? 'Erro ao criar oferta.'); }
