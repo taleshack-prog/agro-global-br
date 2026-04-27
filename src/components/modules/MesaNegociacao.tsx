@@ -176,8 +176,8 @@ export const MesaNegociacao = () => {
   };
 
   const activeOffers = offers.filter(o => o.status === 'active');
-  const totalVolume  = activeOffers.reduce((s, o) => s + o.volumeSacas, 0);
-  const avgPrice     = activeOffers.length ? activeOffers.reduce((s, o) => s + o.pricePerSaca, 0) / activeOffers.length : 0;
+  const totalVolume  = activeOffers.reduce((s, o) => s + Number(o.volumeSacas), 0);
+  const avgPrice     = activeOffers.length ? activeOffers.reduce((s, o) => s + Number(o.pricePerSaca), 0) / activeOffers.length : 0;
 
   const leilaoData = [
     { item:'Soja — Lote A', quantidade:'500 sc', encerramento:'2h 14min', lance:'R$ 143.50', participantes:7, status:'Ativo' },
@@ -267,9 +267,9 @@ export const MesaNegociacao = () => {
                             <Badge variant={offer.product==='Soja'?'green':offer.product==='Milho'?'yellow':'blue'}>{offer.product}</Badge>
                           </td>
                           <td className="px-4 py-3 text-right font-mono text-text-primary">{offer.volumeSacas.toLocaleString('pt-BR')}</td>
-                          <td className="px-4 py-3 text-right font-bold text-agro-primary font-mono">R$ {offer.pricePerSaca.toFixed(2)}</td>
+                          <td className="px-4 py-3 text-right font-bold text-agro-primary font-mono">R$ {Number(offer.pricePerSaca).toFixed(2)}</td>
                           <td className="px-4 py-3 text-right font-mono text-text-secondary text-xs">
-                            R$ {(offer.volumeSacas*offer.pricePerSaca).toLocaleString('pt-BR',{minimumFractionDigits:0})}
+                            R$ {(Number(offer.volumeSacas) * Number(offer.pricePerSaca)).toLocaleString('pt-BR',{minimumFractionDigits:0})}
                           </td>
                           <td className="px-4 py-3 text-text-secondary text-xs">{offer.origem??'—'}</td>
                           <td className="px-4 py-3 text-text-secondary text-xs">
@@ -374,8 +374,8 @@ export const MesaNegociacao = () => {
                       <tr key={c.id} className="border-b border-border/50 hover:bg-surface/40 transition-colors">
                         <td className="px-5 py-3 font-mono text-xs text-text-secondary">{c.id.slice(0,8)}…</td>
                         <td className="px-4 py-3"><Badge variant={c.product==='Soja'?'green':'yellow'}>{c.product}</Badge></td>
-                        <td className="px-4 py-3 text-right font-mono text-text-primary">{c.volumeSacas.toLocaleString('pt-BR')} sc</td>
-                        <td className="px-4 py-3 text-right font-bold text-agro-primary font-mono">R$ {c.pricePerSaca.toFixed(2)}</td>
+                        <td className="px-4 py-3 text-right font-mono text-text-primary">{Number(c.volumeSacas).toLocaleString('pt-BR')} sc</td>
+                        <td className="px-4 py-3 text-right font-bold text-agro-primary font-mono">R$ {Number(c.pricePerSaca).toFixed(2)}</td>
                         <td className="px-4 py-3 text-text-secondary text-xs">
                           {c.deliveryDate?new Date(c.deliveryDate).toLocaleDateString('pt-BR'):'—'}
                         </td>
