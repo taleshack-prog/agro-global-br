@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   LayoutDashboard, Shield, Store, CreditCard,
   Truck, Leaf, Bell, Settings, Menu, TrendingUp, Layers, Package
@@ -150,7 +150,9 @@ export default function App() {
   const user = useCurrentUser();
   const { farms, selected: selectedFarm, isLoading: farmsLoading, isCreating, create: createFarm, select: selectFarm } = useFarms();
   const [showOnboarding, setShowOnboarding] = useState(false);
-  if (!farmsLoading && farms.length === 0 && !showOnboarding) setShowOnboarding(true);
+  useEffect(() => {
+    if (!farmsLoading && farms.length === 0) setShowOnboarding(true);
+  }, [farmsLoading, farms.length]);
 
   const handleModuleSelect = (id: string) => {
     setActiveModule(id);
